@@ -1,0 +1,150 @@
+/* ============================================================
+   SUNRISE PLUMBING: ANIMATIONS CSS
+   Keyframes, entrance effects, CTA pulse, wave, counters
+   ============================================================ */
+
+/* 1. Phone pulse (emergency strip & banners) */
+@keyframes pulse-ring {
+  0%   { transform: scale(1);    opacity: 1; }
+  40%  { transform: scale(1.2);  opacity: 0.9; }
+  60%  { transform: scale(0.95); opacity: 1; }
+  80%  { transform: scale(1.1);  opacity: 0.9; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+/* 2. Dot pulse (live status indicator) */
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(22,163,74,0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(22,163,74,0); }
+}
+
+/* 3. FAB bounce (one-time on load) */
+@keyframes fab-bounce {
+  0%, 100% { transform: translateY(0); }
+  20%       { transform: translateY(-8px); }
+  40%       { transform: translateY(0); }
+  60%       { transform: translateY(-4px); }
+  80%       { transform: translateY(0); }
+}
+
+/* 4. Fade in up (used for AOS-like effects on mobile where AOS is disabled) */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 5. Shimmer on hero badge */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* 6. Glow pulse on primary CTA (subtle) */
+@keyframes cta-glow {
+  0%, 100% { box-shadow: var(--shadow-cta); }
+  50%       { box-shadow: 0 8px 48px rgba(234,108,10,0.65); }
+}
+.btn--primary { animation: cta-glow 3s ease-in-out infinite; }
+.btn--primary:hover { animation: none; }
+
+/* 7. Counter number roll-in */
+.counter-value { transition: none; }
+.counter-value.counting { display: inline-block; }
+
+/* 8. Diagonal gradient accent stripe (decorative) */
+.gradient-stripe {
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-sunrise) 0%, var(--color-amber) 100%);
+  border-radius: var(--radius-full);
+  margin: var(--space-2) 0;
+  width: 60px;
+}
+.gradient-stripe--wide { width: 100%; }
+.gradient-stripe--center { margin: var(--space-2) auto; }
+
+/* 9. Wave divider SVGs - reusable via class */
+.wave-down-white svg path  { fill: var(--color-white); }
+.wave-down-offwhite svg path { fill: var(--color-off-white); }
+.wave-down-navy svg path   { fill: var(--color-navy); }
+.wave-down-gray svg path   { fill: var(--color-gray-100); }
+
+/* 10. Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  display: inline-block;
+  width: 20px; height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: var(--color-white);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* 11. Scroll reveal for non-AOS (mobile fallback) */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 12. Section transition tint */
+.section-tint {
+  position: relative;
+}
+.section-tint::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-sunrise) 50%, transparent 100%);
+}
+
+/* 13. Logo SVG animation (sunrise arc) */
+.logo-arc {
+  transform-origin: 50% 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .nav__logo:hover .logo-arc {
+    animation: arc-rise 0.5s ease forwards;
+  }
+  @keyframes arc-rise {
+    0%   { transform: scaleY(1); }
+    50%  { transform: scaleY(1.15); }
+    100% { transform: scaleY(1); }
+  }
+}
+
+/* 14. AOS fallback — elements must never stay invisible if AOS doesn't fire */
+/* AOS sets opacity:0 on [data-aos] elements before animating them in.
+   This ensures they're visible when AOS is disabled or slow to init. */
+html:not(.aos-initialized) [data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 15. Hover card lift (generic utility) */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+/* 15. Image overlay fade on hover */
+.img-hover-zoom {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+.img-hover-zoom img {
+  transition: transform 0.4s ease;
+}
+.img-hover-zoom:hover img {
+  transform: scale(1.04);
+}
