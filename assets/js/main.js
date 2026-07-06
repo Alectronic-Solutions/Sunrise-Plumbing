@@ -195,6 +195,21 @@
     onParallax();
   }
 
+  /* ── 11b. Hero video crossfade ── */
+  const heroVideos = document.querySelectorAll('.hero__video');
+  if (heroVideos.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let activeIndex = 0;
+    const cycleHero = () => {
+      const next = (activeIndex + 1) % heroVideos.length;
+      heroVideos[next].currentTime = 0;
+      heroVideos[next].play().catch(() => {});
+      heroVideos[next].classList.add('is-active');
+      heroVideos[activeIndex].classList.remove('is-active');
+      activeIndex = next;
+    };
+    setInterval(cycleHero, 6000);
+  }
+
   /* ── 12. Mobile reveal fallback (for AOS-disabled mobile) ── */
 
   const revealEls = document.querySelectorAll('.reveal');

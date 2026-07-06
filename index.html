@@ -52,7 +52,7 @@
     <span class="emergency-strip__number">(512) 555-0100</span>
     <span class="emergency-strip__sep">·</span>
     <span>Available 24/7</span>
-    <i class="fa-solid fa-chevron-right" aria-hidden="true" style="font-size:0.65rem;opacity:0.7;"></i>
+    <i class="fa-solid fa-chevron-right emergency-strip__chevron" aria-hidden="true"></i>
   </a>
 </div>
 
@@ -141,12 +141,18 @@
 <main id="main-content" class="page-content">
 
   <!-- ─── HERO ─── -->
+  <div class="hero-block">
   <section class="hero" aria-label="Hero">
-    <div class="hero__bg">
-      <picture>
-        <source media="(max-width: 767px)" srcset="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1920&q=80" alt="Licensed Sunrise Plumbing technician working on pipes in Austin TX" width="1920" height="1080" fetchpriority="high">
-      </picture>
+    <div class="hero__bg" id="heroBg">
+      <video class="hero__video is-active" autoplay muted playsinline preload="auto" aria-hidden="true">
+        <source src="./assets/video/hero/hero-1.mp4" type="video/mp4">
+      </video>
+      <video class="hero__video" muted playsinline preload="auto" aria-hidden="true">
+        <source src="./assets/video/hero/hero-2.mp4" type="video/mp4">
+      </video>
+      <video class="hero__video" muted playsinline preload="auto" aria-hidden="true">
+        <source src="./assets/video/hero/hero-3.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="hero__overlay"></div>
     <div class="container">
@@ -212,6 +218,7 @@
       </div>
     </div>
   </section>
+  </div>
 
   <!-- ─── SERVICES PREVIEW ─── -->
   <section class="section bg-off-white" aria-labelledby="services-heading">

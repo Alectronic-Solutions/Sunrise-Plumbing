@@ -60,6 +60,7 @@ button { cursor: pointer; border: none; background: none; }
   --space-2:  1rem;
   --space-3:  1.5rem;
   --space-4:  2rem;
+  --space-5:  2.5rem;
   --space-6:  3rem;
   --space-8:  4rem;
   --space-12: 6rem;
@@ -82,6 +83,29 @@ button { cursor: pointer; border: none; background: none; }
   --strip-height: 24px;
   --nav-height:   72px;
   --content-top:  calc(var(--strip-height) + var(--nav-height));
+}
+
+/* 2b. Custom Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-sunrise) var(--color-off-white);
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-off-white);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-sunrise-light), var(--color-sunrise));
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-off-white);
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-sunrise-hover);
+  background-clip: padding-box;
 }
 
 /* 3. Base Typography */
@@ -682,7 +706,7 @@ body {
     gap: 6px;
   }
   .hero-badge {
-    font-size: 0.65rem;
+    font-size: var(--text-xs);
     padding: 4px 9px;
   }
   .section {
