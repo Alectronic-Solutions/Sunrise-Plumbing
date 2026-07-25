@@ -427,6 +427,35 @@
 }
 .hero__wave svg { display: block; width: 100%; }
 
+.hero__motion-toggle {
+  position: absolute;
+  z-index: 2;
+  bottom: calc(var(--space-3) + 24px);
+  right: var(--space-3);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13,27,42,0.55);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: var(--radius-full);
+  color: var(--color-white);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.hero__motion-toggle:hover,
+.hero__motion-toggle:focus-visible {
+  background: var(--color-sunrise);
+  border-color: var(--color-sunrise);
+}
+@media (max-width: 1023px) {
+  .hero__motion-toggle {
+    right: auto;
+    left: var(--space-3);
+  }
+}
+
 /* 5. Trust Ribbon */
 .trust-ribbon {
   position: relative;
@@ -568,7 +597,7 @@
   font-size: var(--text-lg);
   flex-shrink: 0;
 }
-.why-list__text h4 { font-size: var(--text-base); margin-bottom: 2px; }
+.why-list__text h3 { font-size: var(--text-base); margin-bottom: 2px; }
 .why-list__text p  { font-size: var(--text-sm); color: rgba(255,255,255,0.92); margin: 0; }
 
 .why-img {
@@ -779,7 +808,7 @@
   font-size: var(--text-lg);
   flex-shrink: 0;
 }
-.contact-info-text h4 { font-size: var(--text-sm); color: var(--color-gray-700); font-weight: 500; margin-bottom: 2px; }
+.contact-info-text h3 { font-size: var(--text-sm); color: var(--color-gray-700); font-weight: 500; margin-bottom: 2px; }
 .contact-info-text p, .contact-info-text a {
   font-weight: 600;
   color: var(--color-navy);
@@ -954,7 +983,7 @@
 }
 .cred-badge:hover { border-color: var(--color-sunrise); box-shadow: var(--shadow-sm); }
 .cred-badge i { font-size: var(--text-4xl); color: var(--color-sunrise); margin-bottom: var(--space-1); }
-.cred-badge h4 { font-size: var(--text-sm); margin-bottom: 2px; }
+.cred-badge h3 { font-size: var(--text-sm); margin-bottom: 2px; }
 .cred-badge p  { font-size: var(--text-xs); color: var(--color-gray-700); margin: 0; }
 
 /* 19. FAB */
@@ -1033,7 +1062,7 @@
 }
 .footer-badge i { color: var(--color-amber); font-size: var(--text-xs); }
 
-.footer-col h4 {
+.footer-col h3 {
   color: var(--color-white);
   font-size: var(--text-sm);
   text-transform: uppercase;

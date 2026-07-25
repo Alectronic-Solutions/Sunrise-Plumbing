@@ -13,7 +13,7 @@
   <meta property="og:url" content="https://sunriseplumbing.com/">
   <meta property="og:title" content="Sunrise Plumbing | Emergency Plumber Austin TX | 24/7">
   <meta property="og:description" content="Austin's most trusted emergency plumber. Licensed &amp; insured, 24/7 availability, 45-minute response. Call (512) 555-0100.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1200&h=630&fit=crop">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1200&h=630&fit=crop&q=80&auto=format">
   <meta property="og:site_name" content="Sunrise Plumbing">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
@@ -24,12 +24,16 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
 
   <!-- CDN CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"></noscript>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
 
   <!-- Site CSS -->
   <link rel="stylesheet" href="./assets/css/main.css">
@@ -147,10 +151,10 @@
       <video class="hero__video is-active" autoplay muted playsinline preload="auto" aria-hidden="true">
         <source src="./assets/video/hero/hero-1.mp4" type="video/mp4">
       </video>
-      <video class="hero__video" muted playsinline preload="auto" aria-hidden="true">
+      <video class="hero__video" muted playsinline preload="none" aria-hidden="true">
         <source src="./assets/video/hero/hero-2.mp4" type="video/mp4">
       </video>
-      <video class="hero__video" muted playsinline preload="auto" aria-hidden="true">
+      <video class="hero__video" muted playsinline preload="none" aria-hidden="true">
         <source src="./assets/video/hero/hero-3.mp4" type="video/mp4">
       </video>
     </div>
@@ -193,6 +197,9 @@
         <path d="M0,60 C240,20 480,0 720,20 C960,40 1200,60 1440,30 L1440,60 L0,60Z" fill="#1B3A5C"/>
       </svg>
     </div>
+    <button type="button" class="hero__motion-toggle" id="heroMotionToggle" aria-pressed="false" aria-label="Pause background video">
+      <i class="fa-solid fa-pause" aria-hidden="true"></i>
+    </button>
   </section>
 
   <!-- ─── TRUST RIBBON ─── -->
@@ -229,37 +236,37 @@
         <p class="section-subtitle">From burst pipes to water heater replacements, we diagnose it fast and fix it right. Fully stocked vans, same-day service.</p>
       </div>
       <div class="grid grid-3" style="margin-top:var(--space-6);">
-        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80');--card-bg-hover:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80');">
+        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80&auto=format');--card-bg-hover:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&auto=format');">
           <div class="service-card__icon"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></div>
           <h3>Emergency Plumbing</h3>
           <p>Burst pipes, flooding, sewage backups: we respond to plumbing emergencies in Austin within 45 minutes, 24/7.</p>
           <a href="./services.html#emergency-plumbing" class="service-card__link">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80');--card-bg-hover:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80');">
+        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&auto=format');--card-bg-hover:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format');">
           <div class="service-card__icon"><i class="fa-solid fa-fire-flame-curved" aria-hidden="true"></i></div>
           <h3>Water Heater Repair</h3>
           <p>No hot water? We repair and replace all brands of water heaters, tank and tankless, same day in Austin TX.</p>
           <a href="./services.html#water-heater-repair" class="service-card__link">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80');--card-bg-hover:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80');">
+        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&q=80&auto=format');--card-bg-hover:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80&auto=format');">
           <div class="service-card__icon"><i class="fa-solid fa-rotate" aria-hidden="true"></i></div>
           <h3>Drain Cleaning</h3>
           <p>Slow or clogged drains cleared fast with professional hydro-jetting and snake equipment. Serving all Austin neighborhoods.</p>
           <a href="./services.html#drain-cleaning" class="service-card__link">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&q=80');--card-bg-hover:url('https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80');">
+        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&q=80&auto=format');--card-bg-hover:url('https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80&auto=format');">
           <div class="service-card__icon"><i class="fa-solid fa-wrench" aria-hidden="true"></i></div>
           <h3>Pipe Repair</h3>
           <p>Cracked, corroded, or burst pipes repaired and replaced by licensed Austin plumbers using quality materials that last.</p>
           <a href="./services.html#pipe-repair" class="service-card__link">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80');--card-bg-hover:url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&q=80');">
+        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=600&q=80&auto=format');--card-bg-hover:url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=600&q=80&auto=format');">
           <div class="service-card__icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></div>
           <h3>Leak Detection</h3>
           <p>Non-invasive leak detection using acoustic and thermal technology. We find hidden leaks without tearing up your walls.</p>
           <a href="./services.html#leak-detection" class="service-card__link">Learn More <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80');--card-bg-hover:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80');">
+        <div class="service-card" style="--card-bg:url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80&auto=format');--card-bg-hover:url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80&auto=format');">
           <div class="service-card__icon"><i class="fa-solid fa-faucet-drip" aria-hidden="true"></i></div>
           <h3>Bathroom &amp; Kitchen</h3>
           <p>Faucet repair, toilet replacement, garbage disposals, dishwasher hookups. Complete plumbing for every room.</p>
@@ -291,28 +298,28 @@
             <li>
               <div class="why-list__icon"><i class="fa-solid fa-clock" aria-hidden="true"></i></div>
               <div class="why-list__text">
-                <h4 style="color:var(--color-white);">45-Minute Emergency Response</h4>
+                <h3 style="color:var(--color-white);">45-Minute Emergency Response</h3>
                 <p>We arrive fast. Not "sometime today." Average 45-minute response across all Austin neighborhoods.</p>
               </div>
             </li>
             <li>
               <div class="why-list__icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
               <div class="why-list__text">
-                <h4 style="color:var(--color-white);">Fully Licensed &amp; Insured in Texas</h4>
+                <h3 style="color:var(--color-white);">Fully Licensed &amp; Insured in Texas</h3>
                 <p>Texas State Board of Plumbing Examiners certified. Full liability &amp; workers' comp coverage.</p>
               </div>
             </li>
             <li>
               <div class="why-list__icon"><i class="fa-solid fa-tag" aria-hidden="true"></i></div>
               <div class="why-list__text">
-                <h4 style="color:var(--color-white);">Flat-Rate Pricing, No Surprises</h4>
+                <h3 style="color:var(--color-white);">Flat-Rate Pricing, No Surprises</h3>
                 <p>You approve the price before we start. No overtime fees, no hidden charges. Ever.</p>
               </div>
             </li>
             <li>
               <div class="why-list__icon"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
               <div class="why-list__text">
-                <h4 style="color:var(--color-white);">4.9-Star Google Rating</h4>
+                <h3 style="color:var(--color-white);">4.9-Star Google Rating</h3>
                 <p>247+ verified reviews from Austin homeowners. We earn trust job by job.</p>
               </div>
             </li>
@@ -323,7 +330,7 @@
           </div>
         </div>
         <div class="why-img img-hover-zoom" data-aos="fade-left">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80" alt="Sunrise Plumbing licensed Austin TX plumber working on residential pipes" width="700" height="500" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format" alt="Sunrise Plumbing licensed Austin TX plumber working on residential pipes" width="700" height="500" loading="lazy">
           <div class="why-img__badge">
             <span class="icon"><i class="fa-solid fa-circle-check" aria-hidden="true"></i></span>
             <span class="text">
@@ -416,7 +423,7 @@
               <div class="stars stars--sm" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
               <p style="margin-top:var(--space-1);">"Burst pipe at 2am on a Saturday. Sunrise had someone at my door in 38 minutes. The tech was professional, explained everything, and fixed it fast. Saved my hardwood floors. Worth every penny."</p>
               <div class="testimonial-card__footer">
-                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=88&h=88&fit=crop&crop=face" alt="Sarah M." width="44" height="44" loading="lazy" aria-hidden="true">
+                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=88&h=88&fit=crop&crop=face&q=80&auto=format" alt="Sarah M." width="44" height="44" loading="lazy" aria-hidden="true">
                 <div>
                   <div class="testimonial-card__name">Sarah M.</div>
                   <div class="testimonial-card__location">South Austin</div>
@@ -430,7 +437,7 @@
               <div class="stars stars--sm" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
               <p style="margin-top:var(--space-1);">"My water heater died on a Tuesday morning. Sunrise came out the same day, gave me an honest quote, and had a new unit installed by 4pm. No upselling, no drama. These guys are the real deal."</p>
               <div class="testimonial-card__footer">
-                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=88&h=88&fit=crop&crop=face" alt="James K." width="44" height="44" loading="lazy" aria-hidden="true">
+                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=88&h=88&fit=crop&crop=face&q=80&auto=format" alt="James K." width="44" height="44" loading="lazy" aria-hidden="true">
                 <div>
                   <div class="testimonial-card__name">James K.</div>
                   <div class="testimonial-card__location">North Austin</div>
@@ -444,7 +451,7 @@
               <div class="stars stars--sm" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
               <p style="margin-top:var(--space-1);">"Called three plumbers for a slab leak. Sunrise was the only one who showed up the same day. Their leak detection tech found it without tearing out any tile. Incredible work."</p>
               <div class="testimonial-card__footer">
-                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&fit=crop&crop=face" alt="Maria L." width="44" height="44" loading="lazy" aria-hidden="true">
+                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=88&h=88&fit=crop&crop=face&q=80&auto=format" alt="Maria L." width="44" height="44" loading="lazy" aria-hidden="true">
                 <div>
                   <div class="testimonial-card__name">Maria L.</div>
                   <div class="testimonial-card__location">Cedar Park</div>
@@ -458,7 +465,7 @@
               <div class="stars stars--sm" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
               <p style="margin-top:var(--space-1);">"I've used Sunrise three times now and they never disappoint. Fair prices, clean work, always on time. If you need an Austin plumber you can actually trust, this is the company."</p>
               <div class="testimonial-card__footer">
-                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=88&h=88&fit=crop&crop=face" alt="David R." width="44" height="44" loading="lazy" aria-hidden="true">
+                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=88&h=88&fit=crop&crop=face&q=80&auto=format" alt="David R." width="44" height="44" loading="lazy" aria-hidden="true">
                 <div>
                   <div class="testimonial-card__name">David R.</div>
                   <div class="testimonial-card__location">Round Rock</div>
@@ -472,7 +479,7 @@
               <div class="stars stars--sm" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
               <p style="margin-top:var(--space-1);">"Kitchen drain completely blocked before a dinner party. Sunrise came within an hour, hydro-jetted the line, and cleaned up after themselves. Guests never even knew there was an issue!"</p>
               <div class="testimonial-card__footer">
-                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=88&h=88&fit=crop&crop=face" alt="Amanda T." width="44" height="44" loading="lazy" aria-hidden="true">
+                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=88&h=88&fit=crop&crop=face&q=80&auto=format" alt="Amanda T." width="44" height="44" loading="lazy" aria-hidden="true">
                 <div>
                   <div class="testimonial-card__name">Amanda T.</div>
                   <div class="testimonial-card__location">Downtown Austin</div>
@@ -486,7 +493,7 @@
               <div class="stars stars--sm" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
               <p style="margin-top:var(--space-1);">"Our whole-home remodel needed a complete plumbing rough-in. Sunrise project managed the entire thing. Licensed, professional, passed all inspections first try. Highly recommend."</p>
               <div class="testimonial-card__footer">
-                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1521119989659-a83eee488004?w=88&h=88&fit=crop&crop=face" alt="Chris & Linda P." width="44" height="44" loading="lazy" aria-hidden="true">
+                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1521119989659-a83eee488004?w=88&h=88&fit=crop&crop=face&q=80&auto=format" alt="Chris & Linda P." width="44" height="44" loading="lazy" aria-hidden="true">
                 <div>
                   <div class="testimonial-card__name">Chris &amp; Linda P.</div>
                   <div class="testimonial-card__location">West Austin</div>
@@ -500,7 +507,7 @@
               <div class="stars stars--sm" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
               <p style="margin-top:var(--space-1);">"They explained everything clearly, gave a fair price upfront, and the work was immaculate. As a property manager with 12 units in Austin, Sunrise is now my only call for plumbing."</p>
               <div class="testimonial-card__footer">
-                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=88&h=88&fit=crop&crop=face" alt="Rachel V." width="44" height="44" loading="lazy" aria-hidden="true">
+                <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=88&h=88&fit=crop&crop=face&q=80&auto=format" alt="Rachel V." width="44" height="44" loading="lazy" aria-hidden="true">
                 <div>
                   <div class="testimonial-card__name">Rachel V.</div>
                   <div class="testimonial-card__location">East Austin</div>
@@ -541,7 +548,7 @@
         </div>
         <div>
           <div class="map-facade" id="map-facade">
-            <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=700&q=80" alt="Map of Sunrise Plumbing service area covering Austin TX and surrounding cities" width="700" height="400" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=700&q=80&auto=format" alt="Map of Sunrise Plumbing service area covering Austin TX and surrounding cities" width="700" height="400" loading="lazy">
             <button class="map-facade__btn" onclick="loadMap('https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110756.92244358994!2d-97.83174539453125!3d30.267152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b509e5e04e03%3A0x9e7b3d7e82d12e81!2sAustin%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000')" aria-label="View interactive service area map">
               <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
               View Interactive Map
@@ -638,7 +645,7 @@
 
         <!-- Col 2: Services -->
         <div class="footer-col">
-          <h4>Our Services</h4>
+          <h3>Our Services</h3>
           <ul>
             <li><a href="./services.html#emergency-plumbing"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Emergency Plumbing</a></li>
             <li><a href="./services.html#water-heater-repair"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Water Heater Repair</a></li>
@@ -653,7 +660,7 @@
 
         <!-- Col 3: Areas -->
         <div class="footer-col">
-          <h4>Service Areas</h4>
+          <h3>Service Areas</h3>
           <ul>
             <li><a href="./service-areas.html#downtown"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Downtown Austin</a></li>
             <li><a href="./service-areas.html#south-austin"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> South Austin</a></li>
@@ -668,7 +675,7 @@
 
         <!-- Col 4: Contact -->
         <div class="footer-col">
-          <h4>Contact Us</h4>
+          <h3>Contact Us</h3>
           <div class="footer-contact-item">
             <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <div>

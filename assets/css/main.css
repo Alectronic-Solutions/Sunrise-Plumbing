@@ -316,7 +316,7 @@ a.link:hover { color: var(--color-sunrise-hover); }
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #6b7a90;
+  color: #55637c;
   margin-bottom: 6px;
 }
 .trust-scroller__track-wrap {
@@ -358,10 +358,7 @@ a.link:hover { color: var(--color-sunrise-hover); }
   font-weight: 700;
   font-size: 0.95rem;
   flex-shrink: 0;
-  opacity: 0.72;
-  transition: opacity 0.2s;
 }
-.trust-scroller__item:hover { opacity: 1; }
 .trust-scroller__item i {
   font-size: 1.35rem;
   color: var(--color-orange);

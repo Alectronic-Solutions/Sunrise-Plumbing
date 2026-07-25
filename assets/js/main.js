@@ -197,17 +197,48 @@
 
   /* ── 11b. Hero video crossfade ── */
   const heroVideos = document.querySelectorAll('.hero__video');
-  if (heroVideos.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const heroMotionToggle = document.getElementById('heroMotionToggle');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (heroMotionToggle && (heroVideos.length <= 1 || reducedMotion)) {
+    heroMotionToggle.hidden = true;
+  }
+
+  if (heroVideos.length > 1 && !reducedMotion) {
     let activeIndex = 0;
+    let isPaused = false;
     const cycleHero = () => {
       const next = (activeIndex + 1) % heroVideos.length;
+      const upcoming = heroVideos[(next + 1) % heroVideos.length];
+      if (upcoming.preload !== 'auto') upcoming.preload = 'auto';
       heroVideos[next].currentTime = 0;
       heroVideos[next].play().catch(() => {});
       heroVideos[next].classList.add('is-active');
       heroVideos[activeIndex].classList.remove('is-active');
       activeIndex = next;
     };
-    setInterval(cycleHero, 6000);
+    let cycleTimer = setInterval(cycleHero, 6000);
+
+    if (heroMotionToggle) {
+      heroMotionToggle.addEventListener('click', () => {
+        const icon = heroMotionToggle.querySelector('i');
+        if (!isPaused) {
+          clearInterval(cycleTimer);
+          heroVideos[activeIndex].pause();
+          heroMotionToggle.setAttribute('aria-pressed', 'true');
+          heroMotionToggle.setAttribute('aria-label', 'Play background video');
+          if (icon) { icon.classList.remove('fa-pause'); icon.classList.add('fa-play'); }
+          isPaused = true;
+        } else {
+          heroVideos[activeIndex].play().catch(() => {});
+          cycleTimer = setInterval(cycleHero, 6000);
+          heroMotionToggle.setAttribute('aria-pressed', 'false');
+          heroMotionToggle.setAttribute('aria-label', 'Pause background video');
+          if (icon) { icon.classList.remove('fa-play'); icon.classList.add('fa-pause'); }
+          isPaused = false;
+        }
+      });
+    }
   }
 
   /* ── 12. Mobile reveal fallback (for AOS-disabled mobile) ── */

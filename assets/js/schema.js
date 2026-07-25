@@ -21,8 +21,9 @@
     url: BASE_URL,
     telephone: PHONE,
     priceRange: '$$',
-    image: BASE_URL + '/assets/images/og/og-default.jpg',
-    logo: BASE_URL + '/assets/images/logo.svg',
+    // TODO: replace with a real logo (square/transparent, ~112x112px) and owned business photo once available
+    image: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1200&h=630&fit=crop&q=80&auto=format',
+    logo: 'https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?w=1200&h=630&fit=crop&q=80&auto=format',
     address: {
       '@type': 'PostalAddress',
       streetAddress: ADDRESS.street,
