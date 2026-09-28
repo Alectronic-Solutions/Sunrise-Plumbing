@@ -352,6 +352,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   background: var(--color-white);
   border-radius: var(--radius-lg);
   padding: var(--space-4) var(--space-3);
@@ -366,10 +368,7 @@
 .service-card:hover { box-shadow: var(--shadow-md); }
 .service-card:focus-within { box-shadow: 0 0 0 3px var(--color-sunrise), var(--shadow-md); }
 .service-card__icon {
-  width: 72px; height: 72px;
-  background: linear-gradient(150deg, #FFF8F1 0%, var(--color-sunrise-tint) 55%, #FFE3CC 100%);
-  border-radius: var(--radius-lg);
-  box-shadow: inset 0 1px 0 #fff, inset 0 -2px 4px rgba(194,65,12,0.08);
+  width: 56px; height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -454,8 +453,10 @@
 @media (min-width: 1024px) { .trust-points { grid-template-columns: repeat(3, 1fr); } }
 .trust-point {
   display: flex;
-  gap: 14px;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  text-align: center;
   background: var(--color-white);
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
@@ -605,6 +606,7 @@
   border: 2px dashed var(--color-sunrise);
   border-radius: var(--radius-lg);
   padding: var(--space-3);
+  text-align: center;
 }
 .coupon-card .coupon-card__icon {
   position: absolute;
@@ -668,6 +670,7 @@
   padding: var(--space-4) var(--space-3) var(--space-3);
   box-shadow: var(--shadow-sm);
   counter-increment: steps;
+  text-align: center;
 }
 .step::before {
   content: counter(steps);
@@ -687,7 +690,7 @@
   font-family: var(--font-heading);
   font-weight: 800;
   font-size: var(--text-xl);
-  margin-bottom: var(--space-3);
+  margin: 0 auto var(--space-3);
 }
 .step h3 { margin-bottom: 6px; }
 .step p { margin: 0; }
@@ -849,8 +852,8 @@
 .cred-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); }
 @media (min-width: 560px) { .cred-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .cred-grid { grid-template-columns: repeat(4, 1fr); } }
-.cred-badge { background: var(--color-white); border: 1px solid var(--color-gray-200); border-radius: var(--radius-lg); padding: var(--space-3); }
-.cred-badge .ico { display: block; width: 56px; height: 56px; margin-bottom: var(--space-2); }
+.cred-badge { background: var(--color-white); border: 1px solid var(--color-gray-200); border-radius: var(--radius-lg); padding: var(--space-3); text-align: center; }
+.cred-badge .ico { display: block; width: 56px; height: 56px; margin: 0 auto var(--space-2); }
 .cred-badge h3 { font-size: var(--text-base); margin-bottom: 4px; }
 .cred-badge p { font-size: var(--text-sm); margin: 0; }
 
@@ -1033,15 +1036,14 @@
   .footer-lower .container { flex-direction: column; justify-content: center; }
 
   /* Icon-beside-text rows stack: icon on top, text under it */
-  .why-list li, .trust-point, .contact-info-item, .footer-contact-item {
+  .why-list li, .contact-info-item, .footer-contact-item {
     flex-direction: column;
     align-items: center;
   }
   .footer-contact-item { gap: 6px; }
 
   /* Cards */
-  .service-card, .review-card { align-items: center; }
-  .service-card__icon, .step::before, .cred-badge .ico { margin-left: auto; margin-right: auto; }
+  .review-card { align-items: center; }
   .why-img__badge { margin: 0 auto; }
   .areas-list { width: fit-content; margin-left: auto; margin-right: auto; text-align: left; }
   .review-card__footer div { text-align: left; }
