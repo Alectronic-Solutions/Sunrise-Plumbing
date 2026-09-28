@@ -1,7 +1,7 @@
 /* ============================================================
    SUNRISE PLUMBING: MAIN JS
    Header, mobile menu, call button, exit banner, hero video,
-   scroll reveal, cursor water
+   scroll reveal, cursor water, parallax
    Everything on the page works without this file. It only adds
    polish on top.
    ============================================================ */
@@ -308,6 +308,40 @@
 
     window.addEventListener('resize', sizeFx, { passive: true });
     sizeFx();
+  }
+
+  /* 9. Parallax: [data-parallax] images drift up and down with the scroll.
+     Two-column desktop layout only, never with reduced motion. */
+  var parallaxEls = document.querySelectorAll('[data-parallax]');
+  var parallaxMq = window.matchMedia('(min-width: 900px)');
+  if (parallaxEls.length && !reducedMotion) {
+    var RANGE = 60;   // max px offset either way
+    var pxTicking = false;
+
+    var updateParallax = function () {
+      pxTicking = false;
+      var vh = window.innerHeight;
+      parallaxEls.forEach(function (el) {
+        if (!parallaxMq.matches) { el.style.transform = ''; return; }
+        // Measure the untransformed box so the offset doesn't feed back into itself
+        var shift = parseFloat(el.dataset.shift) || 0;
+        var rect = el.getBoundingClientRect();
+        var center = rect.top - shift + rect.height / 2;
+        var p = (center - vh / 2) / (vh / 2 + rect.height / 2);   // 1 below the fold, -1 above it
+        p = Math.max(-1, Math.min(1, p));
+        var y = Math.round(p * RANGE * 10) / 10;
+        el.dataset.shift = y;
+        el.style.transform = 'translate3d(0,' + y + 'px,0)';
+      });
+    };
+    var queueParallax = function () {
+      if (!pxTicking) { pxTicking = true; requestAnimationFrame(updateParallax); }
+    };
+
+    window.addEventListener('scroll', queueParallax, { passive: true });
+    window.addEventListener('resize', queueParallax, { passive: true });
+    parallaxMq.addEventListener('change', queueParallax);
+    updateParallax();
   }
 
 })();

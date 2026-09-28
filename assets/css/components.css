@@ -425,6 +425,7 @@
 .why-list p { margin: 0; }
 .why-img { position: relative; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); }
 .why-img img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (min-width: 900px) and (prefers-reduced-motion: no-preference) { .why-img[data-parallax] { will-change: transform; } }
 .why-img__badge {
   position: absolute;
   bottom: 16px; left: 16px; right: 16px;
