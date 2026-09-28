@@ -204,11 +204,11 @@ a.link:hover, .prose a:not(.btn):hover, .accordion-body a:hover { color: var(--c
 .on-dark h2, .on-dark h3 { color: var(--color-white); }
 .on-dark p, .on-dark .section-subtitle { color: rgba(255,255,255,0.92); }
 
-/* 6. Backgrounds */
-.bg-navy      { background-color: var(--color-navy); }
-.bg-off-white { background-color: var(--color-off-white); }
-.bg-white     { background-color: var(--color-white); }
-.bg-gray-100  { background-color: var(--color-gray-100); }
+/* 6. Backgrounds (--tone feeds the section blend in section 12) */
+.bg-navy      { --tone: var(--color-navy);      background-color: var(--color-navy); }
+.bg-off-white { --tone: var(--color-off-white); background-color: var(--color-off-white); }
+.bg-white     { --tone: var(--color-white);     background-color: var(--color-white); }
+.bg-gray-100  { --tone: var(--color-gray-100);  background-color: var(--color-gray-100); }
 
 /* 7. Skip link and focus */
 .skip-link {
@@ -246,19 +246,9 @@ main:focus { outline: none; }
 /* 9. Inner page hero */
 .page-hero {
   background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-mid) 100%);
-  padding: var(--space-5) 0 var(--space-6);
+  padding: var(--space-5) 0 var(--space-8);
   position: relative;
   overflow: hidden;
-}
-.page-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; left: 0; right: 0;
-  height: 32px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C360,0 1080,0 1440,40 L1440,40 L0,40 Z' fill='%23F8FAFC'/%3E%3C/svg%3E") no-repeat bottom/100% 32px;
-}
-.page-hero--white::after {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 40' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C360,0 1080,0 1440,40 L1440,40 L0,40 Z' fill='%23FFFFFF'/%3E%3C/svg%3E");
 }
 .page-hero h1 { color: var(--color-white); max-width: 22ch; }
 .page-hero__lead {
@@ -308,9 +298,46 @@ main:focus { outline: none; }
 .stars .ico { width: 1.15em; height: 1.15em; }
 .stars--sm { font-size: var(--text-sm); }
 
-/* 12. Wave divider */
-.wave-divider { overflow: hidden; line-height: 0; }
-.wave-divider svg { display: block; width: 100%; height: 40px; }
+/* 12. Section blending
+   Each band fades in from the one above it. The ::before layer sits just
+   above the seam, over the bottom padding of the band above, and runs from
+   see-through to this band's own --tone, so any pair blends without
+   listing combinations. Content stays on top (z-index 1). */
+:root { --blend: 5rem; }
+@media (max-width: 640px) { :root { --blend: 3.5rem; } }
+.section, .section--sm { position: relative; }
+:is(.section, .section--sm, .emergency-banner, .cta-section, .site-footer)::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: calc(var(--blend) * -1);
+  height: var(--blend);
+  z-index: 0;
+  background: linear-gradient(to bottom, transparent, var(--tone, transparent));
+  pointer-events: none;
+}
+/* Eased ramp: a straight linear fade leaves a visible line where it ends */
+@supports (color: color-mix(in srgb, red 50%, blue)) {
+  :is(.section, .section--sm, .emergency-banner, .cta-section, .site-footer)::before {
+    background: linear-gradient(to bottom,
+      transparent,
+      color-mix(in srgb, var(--tone, transparent) 8%, transparent) 20%,
+      color-mix(in srgb, var(--tone, transparent) 32%, transparent) 40%,
+      color-mix(in srgb, var(--tone, transparent) 68%, transparent) 60%,
+      color-mix(in srgb, var(--tone, transparent) 92%, transparent) 80%,
+      var(--tone, transparent));
+  }
+}
+:is(.section, .section--sm, .page-hero, .emergency-banner, .cta-section, .site-footer) > * {
+  position: relative;
+  z-index: 1;
+}
+/* The trust ribbon has no room below its numbers, so the band after it
+   carries the fade in its own top padding instead */
+.trust-ribbon + :is(.section, .section--sm)::before { content: none; }
+.trust-ribbon + .bg-off-white {
+  background: linear-gradient(to bottom, var(--color-navy-mid), rgba(27,58,92,0.35) calc(var(--blend) * 0.3), var(--color-off-white) var(--blend));
+}
 
 /* 13. Two column layout with sidebar */
 .layout-sidebar {
@@ -689,7 +716,7 @@ body.modal-open { overflow: hidden; }
   .sidebar, .skip-link, .no-print, .hero__motion-toggle { display: none !important; }
   .page-content { padding-top: 0; }
   .page-hero { background: none; padding: 0 0 12pt; }
-  .page-hero::after { display: none; }
+  .section::before, .section--sm::before, .emergency-banner::before, .cta-section::before, .site-footer::before { display: none; }
   .page-hero h1, .page-hero__lead, .byline { color: #000; }
   .breadcrumb { display: none; }
   body { font-size: 11pt; color: #000; }

@@ -287,8 +287,15 @@
   font-weight: 500;
 }
 .hero-badge .ico { width: 1.5em; height: 1.5em; margin-left: -4px; }
-.hero__wave { position: absolute; bottom: -2px; left: 0; right: 0; z-index: 1; line-height: 0; }
-.hero__wave svg { width: 100%; height: 48px; }
+/* Fades the video into the trust ribbon; sits above the video, below the text */
+.hero__fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: calc(var(--blend) * 1.25);
+  z-index: 0;
+  background: linear-gradient(to bottom, rgba(27,58,92,0), rgba(27,58,92,0.3) 40%, rgba(27,58,92,0.8) 70%, var(--color-navy-mid));
+  pointer-events: none;
+}
 .hero__motion-toggle {
   position: absolute;
   z-index: 2;
@@ -460,8 +467,10 @@
 
 /* 9. Emergency banner */
 .emergency-banner {
-  background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-mid) 100%);
-  padding: var(--space-6) 0;
+  --tone: var(--color-navy);
+  position: relative;
+  background: linear-gradient(180deg, var(--color-navy) 0%, var(--color-navy-mid) 100%);
+  padding: var(--space-8) 0;
   text-align: center;
 }
 .emergency-banner h2 { color: var(--color-white); margin-bottom: var(--space-2); }
@@ -683,11 +692,13 @@
 .step p { margin: 0; }
 
 /* 16. FAQ snippet */
-.faq-snippet { background: var(--color-gray-100); }
+.faq-snippet { --tone: var(--color-gray-100); background: var(--color-gray-100); }
 
 /* 17. Final CTA */
 .cta-section {
-  background: linear-gradient(135deg, var(--color-sunrise) 0%, var(--color-sunrise-hover) 100%);
+  --tone: var(--color-sunrise);
+  position: relative;
+  background: linear-gradient(180deg, var(--color-sunrise) 0%, var(--color-sunrise-hover) 100%);
   padding: var(--space-8) 0;
   text-align: center;
 }
@@ -900,7 +911,7 @@
 @media (min-width: 1024px) { .fab { display: none; } }
 
 /* 24. Footer */
-.site-footer { background: var(--color-navy); color: rgba(255,255,255,0.88); font-size: var(--text-sm); }
+.site-footer { --tone: var(--color-navy); position: relative; background: var(--color-navy); color: rgba(255,255,255,0.88); font-size: var(--text-sm); }
 .footer-upper { padding: var(--space-8) 0 var(--space-6); }
 .footer-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-5); }
 @media (min-width: 640px)  { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -1002,4 +1013,39 @@
   /* Gentle image zoom on hover */
   .img-hover-zoom img { transition: transform 0.4s ease; }
   .img-hover-zoom:hover img { transform: scale(1.03); }
+}
+
+/* 29. Phones: center the layout. Long-form reading (article prose,
+   FAQ answers, forms, tables, legal text) stays left-aligned. */
+@media (max-width: 640px) {
+  main, .site-footer { text-align: center; }
+  .prose, .accordion, .legal-doc, form, .table-wrapper, .callout { text-align: left; }
+
+  /* Width-capped blocks sit in the middle */
+  .hero h1, .hero__sub, .page-hero h1, .page-hero__lead,
+  .section-subtitle, .footer-col p { margin-left: auto; margin-right: auto; }
+
+  /* Flex rows */
+  .btn-group, .hero__badges, .breadcrumb, .byline, .reviews__controls,
+  .review-card__footer, .footer-logo, .footer-lower-links, .guide-toc,
+  .area-card h3, .related-grid a, .coupon-inline { justify-content: center; }
+  .footer-lower .container { flex-direction: column; justify-content: center; }
+
+  /* Icon-beside-text rows stack: icon on top, text under it */
+  .why-list li, .trust-point, .contact-info-item, .footer-contact-item {
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer-contact-item { gap: 6px; }
+
+  /* Cards */
+  .service-card, .review-card { align-items: center; }
+  .service-card__icon, .step::before, .cred-badge .ico { margin-left: auto; margin-right: auto; }
+  .why-img__badge { margin: 0 auto; }
+  .areas-list { width: fit-content; margin-left: auto; margin-right: auto; text-align: left; }
+  .review-card__footer div { text-align: left; }
+  /* Room under the centered badges for the "Pause video" button */
+  .hero__content { padding-bottom: calc(var(--space-8) + 48px); }
+  .financing-block ul { width: fit-content; margin: 0 auto; text-align: left; }
+  .sidebar-links { text-align: left; }
 }
