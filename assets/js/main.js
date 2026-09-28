@@ -1,7 +1,7 @@
 /* ============================================================
    SUNRISE PLUMBING: MAIN JS
    Header, mobile menu, call button, exit banner, hero video,
-   reviews row, scroll reveal, map
+   scroll reveal, cursor water
    Everything on the page works without this file. It only adds
    polish on top.
    ============================================================ */
@@ -166,28 +166,7 @@
     }
   }
 
-  /* 7. Reviews row: previous / next buttons for the scroll-snap track */
-  document.querySelectorAll('[data-reviews]').forEach(function (wrap) {
-    var track = wrap.querySelector('.reviews__track');
-    var prev = wrap.querySelector('[data-dir="prev"]');
-    var next = wrap.querySelector('[data-dir="next"]');
-    if (!track || !prev || !next) return;
-    var update = function () {
-      var max = track.scrollWidth - track.clientWidth - 8;
-      prev.disabled = track.scrollLeft <= 8;
-      next.disabled = track.scrollLeft >= max;
-    };
-    var step = function (dir) {
-      track.scrollBy({ left: dir * track.clientWidth * 0.9, behavior: reducedMotion ? 'auto' : 'smooth' });
-    };
-    prev.addEventListener('click', function () { step(-1); });
-    next.addEventListener('click', function () { step(1); });
-    track.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update, { passive: true });
-    update();
-  });
-
-  /* 8. Fade sections in as they scroll into view */
+  /* 7. Fade sections in as they scroll into view */
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length && 'IntersectionObserver' in window && !reducedMotion) {
     var revealObs = new IntersectionObserver(function (entries) {
@@ -200,19 +179,135 @@
     revealEls.forEach(function (el) { el.classList.add('visible'); });
   }
 
-  /* 9. Map: load Google Maps only when the visitor asks for it */
-  document.querySelectorAll('[data-map-src]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var facade = btn.closest('.map-facade');
-      var iframe = document.createElement('iframe');
-      iframe.src = btn.getAttribute('data-map-src');
-      iframe.title = btn.getAttribute('data-map-title') || 'Map';
-      iframe.loading = 'lazy';
-      iframe.referrerPolicy = 'no-referrer-when-downgrade';
-      iframe.setAttribute('allowfullscreen', '');
-      facade.replaceChildren(iframe);
-      iframe.focus();
+  /* 8. Water: drips fall from the cursor and clicks splash.
+     Mouse and trackpad only, never with reduced motion. The canvas
+     ignores the pointer, and the loop sleeps when nothing is moving. */
+  if (!reducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var fx = document.createElement('canvas');
+    var ctx = fx.getContext('2d');
+    fx.className = 'water-fx';
+    fx.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(fx);
+
+    var GRAVITY = 900;   // px per second squared
+    var MAX_DROPS = 40;
+    var drops = [];
+    var rings = [];
+    var raf = 0, lastT = 0, travel = 0, lastX = null, lastY = null, fxW = 0, fxH = 0;
+    var rand = function (a, b) { return a + Math.random() * (b - a); };
+
+    var sizeFx = function () {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      fxW = window.innerWidth; fxH = window.innerHeight;
+      fx.width = fxW * dpr; fx.height = fxH * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    var addDrop = function (x, y, vx, vy, r, fall) {
+      if (drops.length >= MAX_DROPS) drops.shift();
+      drops.push({ x: x, y: y, vx: vx, vy: vy, r: r, floor: y + fall, fall: fall });
+    };
+    var addRing = function (x, y, max, delay) {
+      rings.push({ x: x, y: y, max: max, t: -delay, life: 0.55 });
+    };
+
+    // Teardrop: round bottom, pointed top, stretched a little by its speed
+    var drawDrop = function (d, alpha) {
+      var r = d.r, tip = r * (1.9 + Math.min(Math.abs(d.vy) / 500, 1.2));
+      ctx.save();
+      ctx.translate(d.x, d.y);
+      ctx.rotate(Math.atan2(d.vx, Math.abs(d.vy) + 60) * -0.8);
+      ctx.beginPath();
+      ctx.moveTo(0, -tip);
+      ctx.bezierCurveTo(r * 0.55, -tip * 0.55, r, -r * 0.2, r, 0);
+      ctx.arc(0, 0, r, 0, Math.PI);
+      ctx.bezierCurveTo(-r, -r * 0.2, -r * 0.55, -tip * 0.55, 0, -tip);
+      ctx.fillStyle = 'rgba(56,189,248,' + (0.75 * alpha) + ')';
+      ctx.strokeStyle = 'rgba(2,132,199,' + (0.7 * alpha) + ')';
+      ctx.lineWidth = 1;
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(-r * 0.35, -r * 0.15, r * 0.32, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(201,240,255,' + (0.95 * alpha) + ')';
+      ctx.fill();
+      ctx.restore();
+    };
+
+    var tick = function (t) {
+      var dt = lastT ? Math.min((t - lastT) / 1000, 0.05) : 0.016;
+      lastT = t;
+      ctx.clearRect(0, 0, fxW, fxH);
+
+      for (var i = drops.length - 1; i >= 0; i--) {
+        var d = drops[i];
+        d.vy += GRAVITY * dt;
+        d.x += d.vx * dt;
+        d.y += d.vy * dt;
+        if (d.vy > 0 && d.y >= d.floor) {
+          addRing(d.x, d.floor, d.r * 3.2, 0);
+          drops.splice(i, 1);
+          continue;
+        }
+        // Fade over the last part of the fall
+        var left = (d.floor - d.y) / d.fall;
+        drawDrop(d, Math.max(0, Math.min(1, left * 2.5)));
+      }
+
+      for (var j = rings.length - 1; j >= 0; j--) {
+        var g = rings[j];
+        g.t += dt;
+        if (g.t < 0) continue;
+        var p = g.t / g.life;
+        if (p >= 1) { rings.splice(j, 1); continue; }
+        var ease = 1 - Math.pow(1 - p, 3);
+        ctx.beginPath();
+        ctx.ellipse(g.x, g.y, g.max * ease + 1, (g.max * ease + 1) * 0.32, 0, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(2,132,199,' + (0.55 * (1 - p)) + ')';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+      }
+
+      if (drops.length || rings.length) { raf = requestAnimationFrame(tick); }
+      else { raf = 0; lastT = 0; }
+    };
+    var wake = function () { if (!raf) raf = requestAnimationFrame(tick); };
+
+    document.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+      if (lastX !== null) travel += Math.hypot(e.clientX - lastX, e.clientY - lastY);
+      lastX = e.clientX; lastY = e.clientY;
+      if (travel < 42) return;
+      travel = 0;
+      addDrop(e.clientX + rand(-2, 2), e.clientY + 6, rand(-12, 12), rand(10, 50), rand(2.4, 3.6), rand(60, 140));
+      wake();
+    }, { passive: true });
+
+    document.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' && e.pointerType !== 'pen') return;
+      if (e.button !== 0) return;
+      var n = Math.round(rand(8, 12));
+      for (var k = 0; k < n; k++) {
+        var a = rand(0.15, 0.85) * Math.PI;   // upward arc
+        var speed = rand(140, 300);
+        addDrop(e.clientX, e.clientY, Math.cos(a) * speed, -Math.sin(a) * speed, rand(1.6, 2.8), rand(18, 44));
+      }
+      addRing(e.clientX, e.clientY, 26, 0);
+      addRing(e.clientX, e.clientY, 42, 0.12);
+      wake();
+    }, { passive: true });
+
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) return;
+      drops.length = 0; rings.length = 0;
+      if (raf) cancelAnimationFrame(raf);
+      raf = 0; lastT = 0;
+      ctx.clearRect(0, 0, fxW, fxH);
     });
-  });
+    document.documentElement.addEventListener('mouseleave', function () { lastX = null; travel = 0; });
+
+    window.addEventListener('resize', sizeFx, { passive: true });
+    sizeFx();
+  }
 
 })();

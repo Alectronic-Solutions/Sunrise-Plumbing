@@ -383,8 +383,9 @@
 .service-card h3 a { color: var(--color-navy); }
 .service-card h3 a::after { content: ''; position: absolute; inset: 0; border-radius: inherit; }
 .service-card h3 a:focus-visible { outline: none; }
+.service-card h3, .service-card p { text-wrap: balance; }
 .service-card p { color: var(--color-gray-700); flex: 1; margin-bottom: var(--space-2); }
-.service-card__price { font-size: var(--text-sm); font-weight: 600; color: var(--color-navy); margin-bottom: var(--space-2); }
+.service-card .service-card__price { flex: none; font-size: var(--text-sm); font-weight: 600; color: var(--color-navy); margin-bottom: var(--space-2); }
 .service-card__more {
   display: inline-flex;
   align-items: center;
@@ -416,13 +417,10 @@
 .why-list--light li { border-bottom-color: var(--color-gray-200); }
 .why-list__icon {
   width: 52px; height: 52px;
-  background: rgba(249,115,22,0.15);
-  border-radius: var(--radius-md);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.why-list__icon .ico { width: 40px; height: 40px; }
-.why-list--light .why-list__icon { background: var(--color-sunrise-tint); }
+.why-list__icon .ico { width: 48px; height: 48px; }
 .why-list h3 { font-size: var(--text-base); margin-bottom: 4px; }
 .why-list p { margin: 0; }
 .why-img { position: relative; border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-lg); }
@@ -465,6 +463,7 @@
 .trust-point .ico { width: 44px; height: 44px; }
 .trust-point h3 { font-size: var(--text-base); margin-bottom: 4px; }
 .trust-point p { font-size: var(--text-sm); margin: 0; color: var(--color-gray-700); }
+.trust-point h3, .trust-point p { text-wrap: balance; }
 
 /* 9. Emergency banner */
 .emergency-banner {
@@ -493,8 +492,7 @@
 .emergency-banner__links { margin-top: var(--space-2); font-size: var(--text-base); }
 .emergency-banner__links a { color: var(--color-amber); text-decoration: underline; text-underline-offset: 3px; }
 
-/* 10. Reviews (scroll-snap row, no autoplay) */
-.reviews { position: relative; }
+/* 10. Reviews (three Google-style cards) */
 .reviews__note {
   display: inline-flex;
   align-items: center;
@@ -503,65 +501,41 @@
   color: var(--color-gray-500);
   margin-top: var(--space-2);
 }
-.reviews__track {
+.reviews {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 88%;
   gap: var(--space-3);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 4px 4px var(--space-3);
-  scroll-padding-inline: 4px;
-  scrollbar-width: thin;
+  max-width: 640px;
+  margin: 0 auto;
 }
-@media (min-width: 640px)  { .reviews__track { grid-auto-columns: calc((100% - var(--space-3)) / 2); } }
-@media (min-width: 1024px) { .reviews__track { grid-auto-columns: calc((100% - 2 * var(--space-3)) / 3); } }
-.reviews__track:focus-visible { outline-offset: 4px; }
+@media (min-width: 900px) { .reviews { grid-template-columns: repeat(3, 1fr); max-width: none; } }
 .review-card {
-  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   background: var(--color-white);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: var(--space-3);
-  box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-gray-200);
+  box-shadow: 0 1px 2px rgba(15,23,42,0.04);
+  text-align: left;
 }
-.review-card blockquote { flex: 1; margin: var(--space-2) 0; color: var(--color-gray-700); }
-.review-card blockquote p { margin: 0; }
-.review-card__footer {
+.review-card__header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 12px;
-  border-top: 1px solid var(--color-gray-200);
-  padding-top: var(--space-2);
 }
-.review-card__avatar {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse 60% 36% at 42% 18%, rgba(255,255,255,0.4), transparent 70%),
-    radial-gradient(circle at 32% 25%, #5A86B8 0%, #2A5080 32%, #1B3A5C 62%, #0D1B2A 100%);
-  box-shadow: 0 3px 0 #0D1B2A, 0 6px 10px -3px rgba(13,27,42,0.45), inset 0 -2px 4px rgba(0,0,0,0.25);
-  text-shadow: 0 1px 1px rgba(0,0,0,0.5);
-  color: var(--color-white);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+.review-card__name { font-weight: 600; color: var(--color-gray-900); margin: 0; line-height: 1.3; }
+.review-card__meta { font-size: var(--text-sm); color: var(--color-gray-500); margin: 2px 0 0; }
+.review-card__source { width: 22px; height: 22px; flex-shrink: 0; }
+.review-card__stars {
+  margin-top: var(--space-2);
+  color: #FBBC04;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+  line-height: 1;
 }
-.review-card__name { font-weight: 700; color: var(--color-navy); font-size: var(--text-sm); }
-.review-card__meta { font-size: var(--text-sm); color: var(--color-gray-500); }
-.reviews__controls { display: flex; justify-content: flex-end; gap: 8px; margin-bottom: var(--space-2); }
-.reviews__btn {
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  border: 2px solid var(--color-navy);
-  color: var(--color-navy);
-  display: flex; align-items: center; justify-content: center;
-}
-.reviews__btn:hover:not(:disabled) { background: var(--color-navy); color: var(--color-white); }
-.reviews__btn:disabled { opacity: 0.35; cursor: default; }
+.review-card blockquote { margin: 12px 0 0; color: var(--color-gray-700); font-size: var(--text-sm); line-height: 1.65; }
+.review-card blockquote p { margin: 0; }
 
 /* 11. Service areas preview */
 .areas-grid {
@@ -625,7 +599,13 @@
 }
 .coupon-card h3 { font-size: var(--text-lg); margin-bottom: var(--space-1); }
 .coupon-card p { font-size: var(--text-sm); color: var(--color-gray-700); }
-.coupon-card__text { flex: 1; }
+.coupon-card h3, .coupon-card p { text-wrap: balance; }
+.coupon-card__body { flex: 1; }
+/* Body and fine print share row heights across the grid,
+   so the fine-print dividers line up card to card */
+@supports (grid-template-rows: subgrid) {
+  .coupon-card { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; }
+}
 .coupon-card .coupon-card__fine, .coupon-inline .coupon-card__fine { font-size: var(--text-xs); color: var(--color-gray-500); border-top: 1px solid var(--color-gray-200); padding-top: 10px; margin-top: var(--space-2); }
 .coupon-inline {
   display: flex;
@@ -722,12 +702,10 @@
 .contact-info-item:last-of-type { border-bottom: none; }
 .contact-info-icon {
   width: 52px; height: 52px;
-  background: var(--color-sunrise-tint);
-  border-radius: var(--radius-md);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-.contact-info-icon .ico { width: 40px; height: 40px; }
+.contact-info-icon .ico { width: 48px; height: 48px; }
 .contact-info-text h3 { font-size: var(--text-sm); font-family: var(--font-body); color: var(--color-gray-500); font-weight: 500; margin-bottom: 2px; }
 .contact-info-text p, .contact-info-text a, .contact-info-text address { font-weight: 600; color: var(--color-navy); font-style: normal; margin: 0; }
 .contact-info-text a { display: inline-block; padding: 2px 0; }
@@ -1019,7 +997,116 @@
   .img-hover-zoom:hover img { transform: scale(1.03); }
 }
 
-/* 29. Phones: center the layout. Long-form reading (article prose,
+/* 29. Pipe puzzle (homepage, drawn by pipe-game.js)
+   Board columns: valve, five pipe columns, house. Tiles touch with no gap
+   so the pipes meet at the seams. Pipe colors come from the icon set's
+   copper, brass and water materials. */
+.pipe-game {
+  --tile: clamp(44px, calc((100vw - 40px) / 6.4), 76px);
+  --end: calc(var(--tile) * 0.7);
+  --pg-casing: #6B3410;
+  --pg-pipe: #DE8546;
+  --pg-water: #38BDF8;
+}
+.pipe-game[hidden] { display: none; }
+.pipe-game__board {
+  display: grid;
+  grid-template-columns: var(--end) repeat(5, var(--tile)) var(--end);
+  grid-template-rows: repeat(5, var(--tile));
+  width: fit-content;
+  margin: 0 auto;
+}
+.pipe-game__tile {
+  position: relative;
+  width: var(--tile);
+  height: var(--tile);
+  padding: 0;
+  border: 0;
+  background: rgba(255,255,255,0.03);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.07);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pipe-game__tile:hover { background: rgba(255,255,255,0.08); }
+.pipe-game__tile:focus-visible { outline-offset: -3px; z-index: 1; border-radius: 0; }
+.pipe-game__tile svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(var(--turn, 0deg));
+  transition: transform 0.22s cubic-bezier(0.3, 1.35, 0.6, 1);
+}
+.pipe-game__board.is-fresh .pipe-game__tile svg { transition: none; }
+.pg-casing, .pg-pipe, .pg-water { fill: none; stroke-linecap: butt; }
+.pg-casing { stroke: var(--pg-casing); stroke-width: 30; }
+.pg-pipe   { stroke: var(--pg-pipe); stroke-width: 22; }
+.pg-collar { fill: #E6AE48; stroke: #7C4A0E; stroke-width: 1.5; }
+.pg-hub    { fill: var(--pg-pipe); stroke: var(--pg-casing); stroke-width: 3; }
+.pg-water, .pg-water-hub { opacity: 0; transition: opacity 0.18s ease; }
+.pg-water     { stroke: var(--pg-water); stroke-width: 11; }
+.pg-water-hub { fill: var(--pg-water); }
+.pipe-game__tile.is-wet .pg-water,
+.pipe-game__tile.is-wet .pg-water-hub { opacity: 1; transition-delay: var(--delay, 0ms); }
+
+/* Valve and house, with a short pipe stub that meets the board */
+.pipe-game__end {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.pipe-game__end--in  { grid-column: 1; justify-content: flex-start; }
+.pipe-game__end--out { grid-column: 7; justify-content: flex-end; }
+.pipe-game__end .ico { position: relative; z-index: 1; width: calc(var(--end) * 0.92); height: calc(var(--end) * 0.92); }
+.pipe-game__end::before, .pipe-game__end::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+}
+.pipe-game__end::before {
+  height: calc(var(--tile) * 0.3);
+  background: var(--pg-pipe);
+  border-block: calc(var(--tile) * 0.04) solid var(--pg-casing);
+  transform: translateY(-50%);
+}
+.pipe-game__end::after {
+  height: calc(var(--tile) * 0.11);
+  background: var(--pg-water);
+  transform: translateY(-50%) scaleX(0);
+  transition: transform 0.3s ease;
+}
+.pipe-game__end--in::before, .pipe-game__end--in::after { left: 45%; right: 0; transform-origin: left; }
+.pipe-game__end--out::before, .pipe-game__end--out::after { left: 0; right: 45%; transform-origin: left; }
+.pipe-game__end.is-wet::after { transform: translateY(-50%) scaleX(1); }
+.pipe-game__end--out.is-wet::after { transition-delay: 0.6s; }
+
+.pipe-game__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 24px;
+  margin-top: var(--space-4);
+}
+.pipe-game__stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; margin: 0; font-size: var(--text-sm); }
+.pipe-game__stats strong { color: var(--color-amber); font-variant-numeric: tabular-nums; }
+.pipe-game__stats [data-best]:not(:empty) { color: rgba(255,255,255,0.7); }
+.pipe-game__stats [data-best]:not(:empty)::before { content: '·'; margin-right: 10px; }
+.pipe-game__win { text-align: center; margin-top: var(--space-4); }
+.pipe-game__win[hidden] { display: none; }
+.pipe-game__win-title { font-family: var(--font-heading); font-weight: 800; font-size: var(--text-2xl); color: var(--color-white); margin-bottom: 4px; }
+.pipe-game__win .btn-group { justify-content: center; margin-top: var(--space-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pipe-game__tile { --delay: 0ms !important; }
+  .pipe-game__end--out.is-wet::after { transition-delay: 0s; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pipe-game__board.is-won .pg-water { animation: pg-rush 0.8s ease 0.5s 2; }
+  .pipe-game__board.is-won .pipe-game__end--out .ico { animation: pg-hop 0.5s ease 0.8s 2; }
+  @keyframes pg-rush { 50% { stroke: #C9F0FF; } }
+  @keyframes pg-hop { 40% { transform: translateY(-6px) scale(1.08); } }
+}
+
+/* 30. Phones: center the layout. Long-form reading (article prose,
    FAQ answers, forms, tables, legal text) stays left-aligned. */
 @media (max-width: 640px) {
   main, .site-footer { text-align: center; }
@@ -1030,8 +1117,7 @@
   .section-subtitle, .footer-col p { margin-left: auto; margin-right: auto; }
 
   /* Flex rows */
-  .btn-group, .hero__badges, .breadcrumb, .byline, .reviews__controls,
-  .review-card__footer, .footer-logo, .footer-lower-links, .guide-toc,
+  .btn-group, .hero__badges, .breadcrumb, .byline, .footer-logo, .footer-lower-links, .guide-toc,
   .area-card h3, .related-grid a, .coupon-inline { justify-content: center; }
   .footer-lower .container { flex-direction: column; justify-content: center; }
 
@@ -1043,10 +1129,8 @@
   .footer-contact-item { gap: 6px; }
 
   /* Cards */
-  .review-card { align-items: center; }
   .why-img__badge { margin: 0 auto; }
   .areas-list { width: fit-content; margin-left: auto; margin-right: auto; text-align: left; }
-  .review-card__footer div { text-align: left; }
   /* Room under the centered badges for the "Pause video" button */
   .hero__content { padding-bottom: calc(var(--space-8) + 48px); }
   .financing-block ul { width: fit-content; margin: 0 auto; text-align: left; }
