@@ -123,7 +123,7 @@
       if (!motionToggle) return;
       motionToggle.querySelector('.label').textContent = playing ? 'Pause video' : 'Play video';
       var icon = motionToggle.querySelector('i');
-      icon.className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+      icon.className = playing ? 'ico ico-pause' : 'ico ico-play';
     };
     var cycle = function () {
       var next = (active + 1) % heroVideos.length;

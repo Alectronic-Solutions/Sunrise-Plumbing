@@ -29,17 +29,16 @@
 
   <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Fonts and icons -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
   <!-- Site styles -->
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/components.css">
+  <link rel="stylesheet" href="./assets/css/icons.css">
 
   <!-- Structured data for search engines and AI assistants -->
   <script type="application/ld+json">
@@ -272,7 +271,7 @@
 <header class="site-header">
   <div class="emergency-strip">
     <a href="tel:+15125550100" class="emergency-strip__link">
-      <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
+      <i class="ico ico-phone-ring" aria-hidden="true"></i>
       <span class="emergency-strip__label">Plumbing emergency?</span>
       <span class="emergency-strip__sep emergency-strip__sep--first" aria-hidden="true">&middot;</span>
       <span>Call <span class="emergency-strip__number">(512)&nbsp;555-0100</span></span>
@@ -298,7 +297,7 @@
       </ul>
 
       <div class="nav__cta">
-        <a href="tel:+15125550100" class="nav__cta-phone"><i class="fa-solid fa-phone" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
+        <a href="tel:+15125550100" class="nav__cta-phone"><i class="ico ico-phone" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
         <a href="./contact.html" class="btn btn--primary btn--sm">Free estimate</a>
       </div>
 
@@ -310,16 +309,16 @@
 
   <nav class="nav__mobile-menu" id="mobile-menu" aria-label="Mobile">
     <ul>
-        <li><a href="./index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a></li>
-        <li><a href="./services.html"><i class="fa-solid fa-wrench" aria-hidden="true"></i> Services</a></li>
-        <li><a href="./service-areas.html" class="active" aria-current="page"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Service Areas</a></li>
-        <li><a href="./about.html"><i class="fa-solid fa-users" aria-hidden="true"></i> About</a></li>
-        <li><a href="./faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> FAQ</a></li>
-        <li><a href="./contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a></li>
-      <li><a href="./emergency-guide.html"><i class="fa-solid fa-life-ring" aria-hidden="true"></i> Emergency guide</a></li>
+        <li><a href="./index.html"><i class="ico ico-house" aria-hidden="true"></i> Home</a></li>
+        <li><a href="./services.html"><i class="ico ico-wrench" aria-hidden="true"></i> Services</a></li>
+        <li><a href="./service-areas.html" class="active" aria-current="page"><i class="ico ico-map" aria-hidden="true"></i> Service Areas</a></li>
+        <li><a href="./about.html"><i class="ico ico-team" aria-hidden="true"></i> About</a></li>
+        <li><a href="./faq.html"><i class="ico ico-question" aria-hidden="true"></i> FAQ</a></li>
+        <li><a href="./contact.html"><i class="ico ico-envelope" aria-hidden="true"></i> Contact</a></li>
+      <li><a href="./emergency-guide.html"><i class="ico ico-lifering" aria-hidden="true"></i> Emergency guide</a></li>
     </ul>
     <div class="nav__mobile-cta">
-      <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
+      <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
       <a href="./contact.html" class="btn btn--secondary btn--full">Request a free estimate</a>
     </div>
   </nav>
@@ -329,7 +328,7 @@
   <div class="container exit-banner__inner">
     <p class="exit-banner__text"><strong>Still looking for a plumber?</strong> A real person answers at (512)&nbsp;555-0100, day or night.</p>
     <div class="exit-banner__actions">
-      <a href="tel:+15125550100" class="btn btn--primary btn--sm"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call now</a>
+      <a href="tel:+15125550100" class="btn btn--primary btn--sm"><i class="ico ico-phone" aria-hidden="true"></i> Call now</a>
       <button type="button" class="exit-banner__dismiss">No thanks</button>
     </div>
   </div>
@@ -347,7 +346,7 @@
       <p class="section-label section-label--white">Where we work</p>
       <h1>Plumbing service across the Austin area</h1>
       <p class="page-hero__lead">We cover Austin and the towns around it, from Georgetown down to Kyle and out to Lakeway and Manor. The times below are typical for emergency calls.</p>
-      <div class="btn-group page-hero__actions"><a href="tel:+15125550100" class="btn btn--primary"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a></div>
+      <div class="btn-group page-hero__actions"><a href="tel:+15125550100" class="btn btn--primary"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a></div>
 
     </div>
   </section>
@@ -360,98 +359,98 @@
       </div>
       <div class="grid grid-3">
         <article class="area-card" id="downtown">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Downtown Austin</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Downtown Austin</h3>
           <p class="area-card__meta">Usually 20 to 30 minutes</p>
           <p>Condos, high-rises and older homes around downtown. We work with building management on access and water shutoffs. <a href="./emergency-plumbing.html" class="link">Emergency plumbing</a></p>
           <p class="area-card__zips">ZIP codes: 78701</p>
           <a href="./contact.html?area=downtown" class="btn btn--outline btn--sm btn--full">Request service in Downtown Austin</a>
         </article>
         <article class="area-card" id="south-austin">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> South Austin</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> South Austin</h3>
           <p class="area-card__meta">Usually 25 to 40 minutes</p>
           <p>Travis Heights, Bouldin Creek, Barton Hills and south to Slaughter Lane. Plenty of 1950s and 60s houses here still have their original galvanized pipe. <a href="./pipe-repair.html" class="link">Pipe repair</a></p>
           <p class="area-card__zips">ZIP codes: 78704, 78745, 78748</p>
           <a href="./contact.html?area=south-austin" class="btn btn--outline btn--sm btn--full">Request service in South Austin</a>
         </article>
         <article class="area-card" id="north-austin">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> North Austin</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> North Austin</h3>
           <p class="area-card__meta">Usually 25 to 40 minutes</p>
           <p>Allandale, Crestview, Anderson Mill and the Domain area. Big old trees in the older neighborhoods mean roots in sewer lines are common. <a href="./sewer-line.html" class="link">Sewer line service</a></p>
           <p class="area-card__zips">ZIP codes: 78727, 78750, 78758, 78759</p>
           <a href="./contact.html?area=north-austin" class="btn btn--outline btn--sm btn--full">Request service in North Austin</a>
         </article>
         <article class="area-card" id="east-austin">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> East Austin</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> East Austin</h3>
           <p class="area-card__meta">Usually 20 to 35 minutes</p>
           <p>East Cesar Chavez, Mueller, Cherrywood and Windsor Park. A mix of brand-new builds and older homes with cast iron drains. <a href="./drain-cleaning.html" class="link">Drain cleaning</a></p>
           <p class="area-card__zips">ZIP codes: 78702, 78721, 78723, 78724</p>
           <a href="./contact.html?area=east-austin" class="btn btn--outline btn--sm btn--full">Request service in East Austin</a>
         </article>
         <article class="area-card" id="west-austin">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> West Austin</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> West Austin</h3>
           <p class="area-card__meta">Usually 25 to 40 minutes</p>
           <p>Tarrytown, Clarksville, Northwest Hills and Westlake. Hillside homes here often have high water pressure and pressure regulators that need checking. <a href="./pipe-repair.html" class="link">Pipe repair</a></p>
           <p class="area-card__zips">ZIP codes: 78703, 78731, 78746</p>
           <a href="./contact.html?area=west-austin" class="btn btn--outline btn--sm btn--full">Request service in West Austin</a>
         </article>
         <article class="area-card" id="round-rock">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Round Rock</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Round Rock</h3>
           <p class="area-card__meta">Usually 30 to 45 minutes</p>
           <p>Old Town, Brushy Creek and Teravista. Many homes from the 80s and 90s here are due for new water heaters and pressure valves. <a href="./water-heater-repair.html" class="link">Water heaters</a></p>
           <p class="area-card__zips">ZIP codes: 78664, 78665, 78681</p>
           <a href="./contact.html?area=round-rock" class="btn btn--outline btn--sm btn--full">Request service in Round Rock</a>
         </article>
         <article class="area-card" id="cedar-park">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Cedar Park</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Cedar Park</h3>
           <p class="area-card__meta">Usually 35 to 50 minutes</p>
           <p>Buttercup Creek, Twin Creeks and Whitestone. Mostly newer PEX plumbing, with a lot of water heaters reaching the ten-year mark. <a href="./water-heater-repair.html" class="link">Water heaters</a></p>
           <p class="area-card__zips">ZIP codes: 78613</p>
           <a href="./contact.html?area=cedar-park" class="btn btn--outline btn--sm btn--full">Request service in Cedar Park</a>
         </article>
         <article class="area-card" id="pflugerville">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Pflugerville</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Pflugerville</h3>
           <p class="area-card__meta">Usually 30 to 45 minutes</p>
           <p>Blackhawk, Falcon Pointe and Highland Park. The clay soil here moves a lot, and slab leaks are one of our most common calls. <a href="./leak-detection.html" class="link">Leak detection</a></p>
           <p class="area-card__zips">ZIP codes: 78660</p>
           <a href="./contact.html?area=pflugerville" class="btn btn--outline btn--sm btn--full">Request service in Pflugerville</a>
         </article>
         <article class="area-card" id="georgetown">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Georgetown</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Georgetown</h3>
           <p class="area-card__meta">Usually 40 to 55 minutes</p>
           <p>Downtown Georgetown, Sun City and Wolf Ranch. We do a lot of bathroom updates and water heater swaps for Sun City homeowners. <a href="./bathroom-plumbing.html" class="link">Bathroom plumbing</a></p>
           <p class="area-card__zips">ZIP codes: 78626, 78628, 78633</p>
           <a href="./contact.html?area=georgetown" class="btn btn--outline btn--sm btn--full">Request service in Georgetown</a>
         </article>
         <article class="area-card" id="leander">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Leander</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Leander</h3>
           <p class="area-card__meta">Usually 40 to 55 minutes</p>
           <p>Crystal Falls, Travisso and Summerlyn. A fast-growing area where many builder-grade fixtures are ready for an upgrade. <a href="./kitchen-plumbing.html" class="link">Kitchen plumbing</a></p>
           <p class="area-card__zips">ZIP codes: 78641</p>
           <a href="./contact.html?area=leander" class="btn btn--outline btn--sm btn--full">Request service in Leander</a>
         </article>
         <article class="area-card" id="kyle">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Kyle</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Kyle</h3>
           <p class="area-card__meta">Usually 35 to 50 minutes</p>
           <p>Plum Creek, Six Creeks and Hometown Kyle. Newer homes, so most calls are water heaters, disposals and drain clogs. <a href="./drain-cleaning.html" class="link">Drain cleaning</a></p>
           <p class="area-card__zips">ZIP codes: 78640</p>
           <a href="./contact.html?area=kyle" class="btn btn--outline btn--sm btn--full">Request service in Kyle</a>
         </article>
         <article class="area-card" id="buda">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Buda</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Buda</h3>
           <p class="area-card__meta">Usually 35 to 50 minutes</p>
           <p>Garlic Creek, Sunfield and downtown Buda. Most calls here are water heaters and kitchen plumbing. <a href="./kitchen-plumbing.html" class="link">Kitchen plumbing</a></p>
           <p class="area-card__zips">ZIP codes: 78610</p>
           <a href="./contact.html?area=buda" class="btn btn--outline btn--sm btn--full">Request service in Buda</a>
         </article>
         <article class="area-card" id="manor">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Manor</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Manor</h3>
           <p class="area-card__meta">Usually 35 to 45 minutes</p>
           <p>ShadowGlen, Presidential Meadows and the FM 973 area. Easy to reach from our east side trucks on 290. <a href="./emergency-plumbing.html" class="link">Emergency plumbing</a></p>
           <p class="area-card__zips">ZIP codes: 78653</p>
           <a href="./contact.html?area=manor" class="btn btn--outline btn--sm btn--full">Request service in Manor</a>
         </article>
         <article class="area-card" id="lakeway">
-          <h3><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Lakeway and Bee Cave</h3>
+          <h3><i class="ico ico-pin" aria-hidden="true"></i> Lakeway and Bee Cave</h3>
           <p class="area-card__meta">Usually 35 to 50 minutes</p>
           <p>Lakeway, Bee Cave and Hudson Bend around Lake Travis. Hillside homes with long water lines and pressure regulators that need regular checks. <a href="./pipe-repair.html" class="link">Pipe repair</a></p>
           <p class="area-card__zips">ZIP codes: 78734, 78738</p>
@@ -514,7 +513,7 @@
       </div>
       <div class="map-facade">
             <button type="button" class="map-facade__btn" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110756.92244358994!2d-97.83174539453125!3d30.267152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b509e5e04e03%3A0x9e7b3d7e82d12e81!2sAustin%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000" data-map-title="Map of the Sunrise Plumbing service area around Austin, Texas">
-              <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+              <i class="ico ico-map" aria-hidden="true"></i>
               Show the service area map
               <span>Loads Google Maps</span>
             </button>
@@ -527,7 +526,7 @@
       <h2 id="cta-heading">In our area? Give us a call.</h2>
       <p>Wherever you are in the Austin metro, a licensed plumber can usually be there within the hour.</p>
       <div class="btn-group btn-group--center">
-        <a href="tel:+15125550100" class="btn btn--white btn--lg"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
+        <a href="tel:+15125550100" class="btn btn--white btn--lg"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
         <a href="./contact.html" class="btn btn--secondary btn--lg">Request a free estimate</a>
       </div>
       <p class="cta-section__address">Sunrise Plumbing &middot; 123 Main Street, Austin, TX 78701 &middot; Texas Master Plumber License M-00000</p>
@@ -578,19 +577,19 @@
         <div class="footer-col">
           <h2>Contact</h2>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <i class="ico ico-phone" aria-hidden="true"></i>
             <div><a href="tel:+15125550100">(512)&nbsp;555-0100</a><span class="sub">Answered 24 hours a day</span></div>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <i class="ico ico-envelope" aria-hidden="true"></i>
             <div><a href="mailto:info@sunriseplumbing.com">info@sunriseplumbing.com</a></div>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <i class="ico ico-pin" aria-hidden="true"></i>
             <address>123 Main Street<br>Austin, TX 78701</address>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            <i class="ico ico-clock" aria-hidden="true"></i>
             <div><span class="footer-open">Open 24/7, every day</span><span class="sub">Office: Mon to Fri, 7&nbsp;a.m. to 6&nbsp;p.m.</span></div>
           </div>
         </div>
@@ -605,13 +604,13 @@
         <a href="./privacy.html">Privacy policy</a>
         <a href="./terms.html">Terms of service</a>
         <a href="./sitemap.html">Sitemap</a>
-        <a href="#top">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+        <a href="#top">Back to top <i class="ico ico-arrow-up" aria-hidden="true"></i></a>
       </nav>
       <p class="footer-designer">Designed and built by <a href="https://alectronicsolutions.com" target="_blank" rel="noopener">Alectronic Solutions<span class="sr-only"> (opens in a new tab)</span></a></p>
     </div>
   </div>
 
-  <a href="tel:+15125550100" class="fab"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> <span>Call now</span></a>
+  <a href="tel:+15125550100" class="fab"><i class="ico ico-phone-ring" aria-hidden="true"></i> <span>Call now</span></a>
 </footer>
 
 <script src="./assets/js/main.js" defer></script>

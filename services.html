@@ -29,17 +29,16 @@
 
   <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Fonts and icons -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
   <!-- Site styles -->
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/components.css">
+  <link rel="stylesheet" href="./assets/css/icons.css">
 
   <!-- Structured data for search engines and AI assistants -->
   <script type="application/ld+json">
@@ -327,7 +326,7 @@
 <header class="site-header">
   <div class="emergency-strip">
     <a href="tel:+15125550100" class="emergency-strip__link">
-      <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
+      <i class="ico ico-phone-ring" aria-hidden="true"></i>
       <span class="emergency-strip__label">Plumbing emergency?</span>
       <span class="emergency-strip__sep emergency-strip__sep--first" aria-hidden="true">&middot;</span>
       <span>Call <span class="emergency-strip__number">(512)&nbsp;555-0100</span></span>
@@ -353,7 +352,7 @@
       </ul>
 
       <div class="nav__cta">
-        <a href="tel:+15125550100" class="nav__cta-phone"><i class="fa-solid fa-phone" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
+        <a href="tel:+15125550100" class="nav__cta-phone"><i class="ico ico-phone" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
         <a href="./contact.html" class="btn btn--primary btn--sm">Free estimate</a>
       </div>
 
@@ -365,16 +364,16 @@
 
   <nav class="nav__mobile-menu" id="mobile-menu" aria-label="Mobile">
     <ul>
-        <li><a href="./index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a></li>
-        <li><a href="./services.html" class="active" aria-current="page"><i class="fa-solid fa-wrench" aria-hidden="true"></i> Services</a></li>
-        <li><a href="./service-areas.html"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Service Areas</a></li>
-        <li><a href="./about.html"><i class="fa-solid fa-users" aria-hidden="true"></i> About</a></li>
-        <li><a href="./faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> FAQ</a></li>
-        <li><a href="./contact.html"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a></li>
-      <li><a href="./emergency-guide.html"><i class="fa-solid fa-life-ring" aria-hidden="true"></i> Emergency guide</a></li>
+        <li><a href="./index.html"><i class="ico ico-house" aria-hidden="true"></i> Home</a></li>
+        <li><a href="./services.html" class="active" aria-current="page"><i class="ico ico-wrench" aria-hidden="true"></i> Services</a></li>
+        <li><a href="./service-areas.html"><i class="ico ico-map" aria-hidden="true"></i> Service Areas</a></li>
+        <li><a href="./about.html"><i class="ico ico-team" aria-hidden="true"></i> About</a></li>
+        <li><a href="./faq.html"><i class="ico ico-question" aria-hidden="true"></i> FAQ</a></li>
+        <li><a href="./contact.html"><i class="ico ico-envelope" aria-hidden="true"></i> Contact</a></li>
+      <li><a href="./emergency-guide.html"><i class="ico ico-lifering" aria-hidden="true"></i> Emergency guide</a></li>
     </ul>
     <div class="nav__mobile-cta">
-      <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
+      <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
       <a href="./contact.html" class="btn btn--secondary btn--full">Request a free estimate</a>
     </div>
   </nav>
@@ -384,7 +383,7 @@
   <div class="container exit-banner__inner">
     <p class="exit-banner__text"><strong>Still looking for a plumber?</strong> A real person answers at (512)&nbsp;555-0100, day or night.</p>
     <div class="exit-banner__actions">
-      <a href="tel:+15125550100" class="btn btn--primary btn--sm"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call now</a>
+      <a href="tel:+15125550100" class="btn btn--primary btn--sm"><i class="ico ico-phone" aria-hidden="true"></i> Call now</a>
       <button type="button" class="exit-banner__dismiss">No thanks</button>
     </div>
   </div>
@@ -402,7 +401,7 @@
       <p class="section-label section-label--white">What we do</p>
       <h1>Plumbing services in Austin</h1>
       <p class="page-hero__lead">Everything we do, with the price where a typical job starts. Every estimate is free, and you approve the price before we pick up a wrench.</p>
-      <div class="btn-group page-hero__actions"><a href="tel:+15125550100" class="btn btn--primary"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a><a href="./contact.html" class="btn btn--secondary">Request a free estimate</a></div>
+      <div class="btn-group page-hero__actions"><a href="tel:+15125550100" class="btn btn--primary"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a><a href="./contact.html" class="btn btn--secondary">Request a free estimate</a></div>
 
     </div>
   </section>
@@ -412,60 +411,60 @@
       <h2 id="all-services-heading" class="sr-only">All services</h2>
       <div class="grid grid-4">
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-burst-pipe"></i></div>
           <h3><a href="./emergency-plumbing.html">Emergency plumbing</a></h3>
           <p>Burst pipes, sewage coming back up, water where it shouldn't be. We answer 24/7 and usually get there in under an hour.</p>
           <p class="service-card__price">No after-hours surcharge</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-fire-flame-curved"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-water-heater"></i></div>
           <h3><a href="./water-heater-repair.html">Water heater repair and replacement</a></h3>
           <p>Tank and tankless, gas and electric, every major brand. Most replacements are finished the same day.</p>
           <p class="service-card__price">Repairs from $150</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-rotate"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-drain"></i></div>
           <h3><a href="./drain-cleaning.html">Drain cleaning</a></h3>
           <p>Kitchen, bath and main line clogs cleared with a cable machine or hydro-jet, with a camera check when it helps.</p>
           <p class="service-card__price">From $125</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-wrench"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-wrench"></i></div>
           <h3><a href="./pipe-repair.html">Pipe repair and repiping</a></h3>
           <p>Pinhole leaks, burst lines and worn-out galvanized or polybutylene pipe. We fix the spot or repipe the house in PEX.</p>
           <p class="service-card__price">From $200</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-leak"></i></div>
           <h3><a href="./leak-detection.html">Leak detection and slab leaks</a></h3>
           <p>Acoustic and thermal tools find hidden leaks behind walls and under the slab, so we only open up one spot.</p>
           <p class="service-card__price">From $200</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-bath"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-bathtub"></i></div>
           <h3><a href="./bathroom-plumbing.html">Bathroom plumbing</a></h3>
           <p>Running toilets, dripping faucets, worn shower valves and the plumbing for bathroom remodels.</p>
           <p class="service-card__price">From $125</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-sink"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-sink"></i></div>
           <h3><a href="./kitchen-plumbing.html">Kitchen plumbing</a></h3>
           <p>Garbage disposals, faucets, dishwasher and ice maker lines, and that slow leak under the sink.</p>
           <p class="service-card__price">From $150</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
         <article class="service-card">
-          <div class="service-card__icon" aria-hidden="true"><i class="fa-solid fa-arrow-down-wide-short"></i></div>
+          <div class="service-card__icon" aria-hidden="true"><i class="ico ico-sewer"></i></div>
           <h3><a href="./sewer-line.html">Sewer line service</a></h3>
           <p>Camera inspections, root cutting, cleanouts and trenchless repair for the line out to the street.</p>
           <p class="service-card__price">Inspections from $175</p>
-          <span class="service-card__more" aria-hidden="true">Details and prices <i class="fa-solid fa-arrow-right"></i></span>
+          <span class="service-card__more" aria-hidden="true">Details and prices <i class="ico ico-arrow-right"></i></span>
         </article>
       </div>
     </div>
@@ -496,9 +495,9 @@
         </div>
         <div>
           <ul>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i> <span>Water heaters, repipes, sewer lines and slab leak repairs</span></li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i> <span>Apply in a few minutes, usually with an answer the same day</span></li>
-            <li><i class="fa-solid fa-check" aria-hidden="true"></i> <span>No penalty for paying it off early</span></li>
+            <li><i class="ico ico-check" aria-hidden="true"></i> <span>Water heaters, repipes, sewer lines and slab leak repairs</span></li>
+            <li><i class="ico ico-check" aria-hidden="true"></i> <span>Apply in a few minutes, usually with an answer the same day</span></li>
+            <li><i class="ico ico-check" aria-hidden="true"></i> <span>No penalty for paying it off early</span></li>
           </ul>
           <div class="btn-group mt-4">
             <a href="./contact.html?service=financing" class="btn btn--primary">Ask about financing</a>
@@ -513,7 +512,7 @@
       <h2 id="cta-heading">Call now and talk to a plumber</h2>
       <p>Day or night. If it can wait, send a message and we'll call you back with a free estimate.</p>
       <div class="btn-group btn-group--center">
-        <a href="tel:+15125550100" class="btn btn--white btn--lg"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
+        <a href="tel:+15125550100" class="btn btn--white btn--lg"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
         <a href="./contact.html" class="btn btn--secondary btn--lg">Request a free estimate</a>
       </div>
       <p class="cta-section__address">Sunrise Plumbing &middot; 123 Main Street, Austin, TX 78701 &middot; Texas Master Plumber License M-00000</p>
@@ -564,19 +563,19 @@
         <div class="footer-col">
           <h2>Contact</h2>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <i class="ico ico-phone" aria-hidden="true"></i>
             <div><a href="tel:+15125550100">(512)&nbsp;555-0100</a><span class="sub">Answered 24 hours a day</span></div>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <i class="ico ico-envelope" aria-hidden="true"></i>
             <div><a href="mailto:info@sunriseplumbing.com">info@sunriseplumbing.com</a></div>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <i class="ico ico-pin" aria-hidden="true"></i>
             <address>123 Main Street<br>Austin, TX 78701</address>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            <i class="ico ico-clock" aria-hidden="true"></i>
             <div><span class="footer-open">Open 24/7, every day</span><span class="sub">Office: Mon to Fri, 7&nbsp;a.m. to 6&nbsp;p.m.</span></div>
           </div>
         </div>
@@ -591,13 +590,13 @@
         <a href="./privacy.html">Privacy policy</a>
         <a href="./terms.html">Terms of service</a>
         <a href="./sitemap.html">Sitemap</a>
-        <a href="#top">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+        <a href="#top">Back to top <i class="ico ico-arrow-up" aria-hidden="true"></i></a>
       </nav>
       <p class="footer-designer">Designed and built by <a href="https://alectronicsolutions.com" target="_blank" rel="noopener">Alectronic Solutions<span class="sr-only"> (opens in a new tab)</span></a></p>
     </div>
   </div>
 
-  <a href="tel:+15125550100" class="fab"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> <span>Call now</span></a>
+  <a href="tel:+15125550100" class="fab"><i class="ico ico-phone-ring" aria-hidden="true"></i> <span>Call now</span></a>
 </footer>
 
 <script src="./assets/js/main.js" defer></script>

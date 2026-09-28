@@ -29,17 +29,16 @@
 
   <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Fonts and icons -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
   <!-- Site styles -->
   <link rel="stylesheet" href="./assets/css/main.css">
   <link rel="stylesheet" href="./assets/css/components.css">
+  <link rel="stylesheet" href="./assets/css/icons.css">
 
   <!-- Structured data for search engines and AI assistants -->
   <script type="application/ld+json">
@@ -272,7 +271,7 @@
 <header class="site-header">
   <div class="emergency-strip">
     <a href="tel:+15125550100" class="emergency-strip__link">
-      <i class="fa-solid fa-phone-volume" aria-hidden="true"></i>
+      <i class="ico ico-phone-ring" aria-hidden="true"></i>
       <span class="emergency-strip__label">Plumbing emergency?</span>
       <span class="emergency-strip__sep emergency-strip__sep--first" aria-hidden="true">&middot;</span>
       <span>Call <span class="emergency-strip__number">(512)&nbsp;555-0100</span></span>
@@ -298,7 +297,7 @@
       </ul>
 
       <div class="nav__cta">
-        <a href="tel:+15125550100" class="nav__cta-phone"><i class="fa-solid fa-phone" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
+        <a href="tel:+15125550100" class="nav__cta-phone"><i class="ico ico-phone" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
         <a href="./contact.html" class="btn btn--primary btn--sm">Free estimate</a>
       </div>
 
@@ -310,16 +309,16 @@
 
   <nav class="nav__mobile-menu" id="mobile-menu" aria-label="Mobile">
     <ul>
-        <li><a href="./index.html"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a></li>
-        <li><a href="./services.html"><i class="fa-solid fa-wrench" aria-hidden="true"></i> Services</a></li>
-        <li><a href="./service-areas.html"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i> Service Areas</a></li>
-        <li><a href="./about.html"><i class="fa-solid fa-users" aria-hidden="true"></i> About</a></li>
-        <li><a href="./faq.html"><i class="fa-solid fa-circle-question" aria-hidden="true"></i> FAQ</a></li>
-        <li><a href="./contact.html" class="active" aria-current="page"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a></li>
-      <li><a href="./emergency-guide.html"><i class="fa-solid fa-life-ring" aria-hidden="true"></i> Emergency guide</a></li>
+        <li><a href="./index.html"><i class="ico ico-house" aria-hidden="true"></i> Home</a></li>
+        <li><a href="./services.html"><i class="ico ico-wrench" aria-hidden="true"></i> Services</a></li>
+        <li><a href="./service-areas.html"><i class="ico ico-map" aria-hidden="true"></i> Service Areas</a></li>
+        <li><a href="./about.html"><i class="ico ico-team" aria-hidden="true"></i> About</a></li>
+        <li><a href="./faq.html"><i class="ico ico-question" aria-hidden="true"></i> FAQ</a></li>
+        <li><a href="./contact.html" class="active" aria-current="page"><i class="ico ico-envelope" aria-hidden="true"></i> Contact</a></li>
+      <li><a href="./emergency-guide.html"><i class="ico ico-lifering" aria-hidden="true"></i> Emergency guide</a></li>
     </ul>
     <div class="nav__mobile-cta">
-      <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
+      <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
       <a href="./contact.html" class="btn btn--secondary btn--full">Request a free estimate</a>
     </div>
   </nav>
@@ -346,7 +345,7 @@
       <div class="emergency-contact-panel on-dark">
         <h2 id="urgent-heading">Is water leaking right now?</h2>
         <p>Skip the form and call. We answer every call, 24 hours a day.</p>
-        <a href="tel:+15125550100" class="big-number"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
+        <a href="tel:+15125550100" class="big-number"><i class="ico ico-phone-ring" aria-hidden="true"></i> (512)&nbsp;555-0100</a>
         <p class="availability">Phones answered now</p>
       </div>
     </div>
@@ -420,15 +419,15 @@
               <label for="company">Leave this field empty</label>
               <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
             </div>
-            <button type="submit" class="btn btn--primary btn--lg btn--full"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send my request</button>
-            <p class="form-privacy"><i class="fa-solid fa-lock" aria-hidden="true"></i> We only use your details to reply to you. See our <a href="./privacy.html" class="link">privacy policy</a>.</p>
+            <button type="submit" class="btn btn--primary btn--lg btn--full"><i class="ico ico-send" aria-hidden="true"></i> Send my request</button>
+            <p class="form-privacy"><i class="ico ico-lock" aria-hidden="true"></i> We only use your details to reply to you. See our <a href="./privacy.html" class="link">privacy policy</a>.</p>
           </form>
         </div>
 
         <div>
           <h2>Contact information</h2>
           <div class="contact-info-item mt-2">
-            <div class="contact-info-icon" aria-hidden="true"><i class="fa-solid fa-phone-volume"></i></div>
+            <div class="contact-info-icon" aria-hidden="true"><i class="ico ico-phone-ring"></i></div>
             <div class="contact-info-text">
               <h3>Phone, 24/7</h3>
               <a href="tel:+15125550100">(512)&nbsp;555-0100</a>
@@ -436,14 +435,14 @@
             </div>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></div>
+            <div class="contact-info-icon" aria-hidden="true"><i class="ico ico-envelope"></i></div>
             <div class="contact-info-text">
               <h3>Email</h3>
               <a href="mailto:info@sunriseplumbing.com">info@sunriseplumbing.com</a>
             </div>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="contact-info-icon" aria-hidden="true"><i class="ico ico-pin"></i></div>
             <div class="contact-info-text">
               <h3>Office</h3>
               <address>123 Main Street<br>Austin, TX 78701</address>
@@ -451,7 +450,7 @@
             </div>
           </div>
           <div class="contact-info-item">
-            <div class="contact-info-icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></div>
+            <div class="contact-info-icon" aria-hidden="true"><i class="ico ico-clock"></i></div>
             <div class="contact-info-text">
               <h3>Hours</h3>
               <p>Phones answered 24/7, every day</p>
@@ -461,7 +460,7 @@
           <div class="mt-4">
             <div class="map-facade">
             <button type="button" class="map-facade__btn" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d110756.92244358994!2d-97.83174539453125!3d30.267152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b509e5e04e03%3A0x9e7b3d7e82d12e81!2sAustin%2C%20TX!5e0!3m2!1sen!2sus!4v1700000000000" data-map-title="Map of the Sunrise Plumbing service area around Austin, Texas">
-              <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+              <i class="ico ico-map" aria-hidden="true"></i>
               Show the service area map
               <span>Loads Google Maps</span>
             </button>
@@ -474,13 +473,13 @@
 
   <div class="modal-overlay" id="thank-you-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
     <div class="modal-box">
-      <button type="button" class="modal-close" data-close-modal aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-      <div class="modal-icon" aria-hidden="true"><i class="fa-solid fa-circle-check"></i></div>
+      <button type="button" class="modal-close" data-close-modal aria-label="Close"><i class="ico ico-close" aria-hidden="true"></i></button>
+      <div class="modal-icon" aria-hidden="true"><i class="ico ico-check-circle"></i></div>
       <p class="demo-tag">Demo site</p>
       <h2 id="modal-title">Thanks for your request!</h2>
       <p id="modal-desc">This is a demo site, so your request wasn't sent anywhere. On a live site, it would go straight to your inbox and the customer would get a call back.</p>
       <div class="modal-actions">
-        <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="fa-solid fa-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
+        <a href="tel:+15125550100" class="btn btn--primary btn--full"><i class="ico ico-phone" aria-hidden="true"></i> Call (512)&nbsp;555-0100</a>
         <button type="button" class="btn btn--outline btn--full" data-close-modal>Close</button>
       </div>
     </div>
@@ -530,19 +529,19 @@
         <div class="footer-col">
           <h2>Contact</h2>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <i class="ico ico-phone" aria-hidden="true"></i>
             <div><a href="tel:+15125550100">(512)&nbsp;555-0100</a><span class="sub">Answered 24 hours a day</span></div>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <i class="ico ico-envelope" aria-hidden="true"></i>
             <div><a href="mailto:info@sunriseplumbing.com">info@sunriseplumbing.com</a></div>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <i class="ico ico-pin" aria-hidden="true"></i>
             <address>123 Main Street<br>Austin, TX 78701</address>
           </div>
           <div class="footer-contact-item">
-            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            <i class="ico ico-clock" aria-hidden="true"></i>
             <div><span class="footer-open">Open 24/7, every day</span><span class="sub">Office: Mon to Fri, 7&nbsp;a.m. to 6&nbsp;p.m.</span></div>
           </div>
         </div>
@@ -557,13 +556,13 @@
         <a href="./privacy.html">Privacy policy</a>
         <a href="./terms.html">Terms of service</a>
         <a href="./sitemap.html">Sitemap</a>
-        <a href="#top">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+        <a href="#top">Back to top <i class="ico ico-arrow-up" aria-hidden="true"></i></a>
       </nav>
       <p class="footer-designer">Designed and built by <a href="https://alectronicsolutions.com" target="_blank" rel="noopener">Alectronic Solutions<span class="sr-only"> (opens in a new tab)</span></a></p>
     </div>
   </div>
 
-  <a href="tel:+15125550100" class="fab"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i> <span>Call now</span></a>
+  <a href="tel:+15125550100" class="fab"><i class="ico ico-phone-ring" aria-hidden="true"></i> <span>Call now</span></a>
 </footer>
 
 <script src="./assets/js/main.js" defer></script>
