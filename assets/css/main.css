@@ -302,9 +302,10 @@ main:focus { outline: none; }
    Each band fades in from the one above it. The ::before layer sits just
    above the seam, over the bottom padding of the band above, and runs from
    see-through to this band's own --tone, so any pair blends without
-   listing combinations. Content stays on top (z-index 1). */
-:root { --blend: 5rem; }
-@media (max-width: 640px) { :root { --blend: 3.5rem; } }
+   listing combinations. Content stays on top (z-index 1). --blend matches
+   the .section padding, so the fade fills that padding and stops at content. */
+:root { --blend: var(--space-8); }
+@media (max-width: 640px) { :root { --blend: var(--space-6); } }
 .section, .section--sm { position: relative; }
 :is(.section, .section--sm, .emergency-banner, .cta-section, .site-footer)::before {
   content: '';
@@ -332,10 +333,10 @@ main:focus { outline: none; }
   position: relative;
   z-index: 1;
 }
-/* The trust ribbon has no room below its numbers, so the band after it
-   carries the fade in its own top padding instead */
-.trust-ribbon + :is(.section, .section--sm)::before { content: none; }
-.trust-ribbon + .bg-off-white {
+/* The trust ribbon (last in .hero-block) has no room below its numbers, so
+   the band after it carries the fade in its own top padding instead */
+.hero-block + :is(.section, .section--sm)::before { content: none; }
+.hero-block + .bg-off-white {
   background: linear-gradient(to bottom, var(--color-navy-mid), rgba(27,58,92,0.35) calc(var(--blend) * 0.3), var(--color-off-white) var(--blend));
 }
 

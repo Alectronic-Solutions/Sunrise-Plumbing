@@ -473,6 +473,7 @@
   padding: var(--space-8) 0;
   text-align: center;
 }
+@media (max-width: 640px) { .emergency-banner { padding: var(--space-6) 0; } }
 .emergency-banner h2 { color: var(--color-white); margin-bottom: var(--space-2); }
 .emergency-banner h2 .accent { color: var(--color-sunrise-light); }
 .emergency-banner p { color: rgba(255,255,255,0.94); font-size: var(--text-lg); max-width: 52ch; margin: 0 auto var(--space-3); }
@@ -841,9 +842,9 @@
 .team-card { background: var(--color-white); border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow-md); scroll-margin-top: calc(var(--content-top) + 16px); }
 .team-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: center 25%; }
 .team-card__body { padding: var(--space-3); }
-.team-card h3 { font-size: var(--text-xl); margin-bottom: 4px; }
+.team-card h3 { font-size: var(--text-xl); margin-bottom: 4px; color: var(--color-navy); }
 .team-card .role { color: var(--color-sunrise); font-weight: 600; font-size: var(--text-sm); margin-bottom: var(--space-1); }
-.team-card p { font-size: var(--text-sm); }
+.team-card p { font-size: var(--text-sm); color: var(--color-gray-700); }
 .team-card .license { font-size: var(--text-sm); color: var(--color-gray-500); margin: 0; }
 .cred-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-3); }
 @media (min-width: 560px) { .cred-grid { grid-template-columns: repeat(2, 1fr); } }
