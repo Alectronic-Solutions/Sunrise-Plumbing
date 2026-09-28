@@ -1,259 +1,218 @@
 /* ============================================================
    SUNRISE PLUMBING: MAIN JS
-   Nav, FAB, exit intent, smooth scroll, AOS, counters
+   Header, mobile menu, call button, exit banner, hero video,
+   reviews row, scroll reveal, map
+   Everything on the page works without this file. It only adds
+   polish on top.
    ============================================================ */
 
 (function () {
   'use strict';
 
-  /* ── 1. Sticky header scroll class ── */
-  const header = document.querySelector('.site-header');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), select, textarea, iframe, [tabindex]:not([tabindex="-1"])';
+
+  /* 1. Header shadow once the page scrolls */
+  var header = document.querySelector('.site-header');
   if (header) {
-    const onScroll = () => {
-      header.classList.toggle('scrolled', window.scrollY > 60);
-    };
+    var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 20); };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
-  /* ── 2. Mobile nav toggle ── */
-  const hamburger = document.querySelector('.nav__hamburger');
-  const mobileMenu = document.querySelector('.nav__mobile-menu');
-  const body = document.body;
+  /* 2. Mobile menu with a real focus trap */
+  var hamburger = document.querySelector('.nav__hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var body = document.body;
 
   if (hamburger && mobileMenu) {
-    const openNav = () => {
+    var isOpen = function () { return body.classList.contains('nav-open'); };
+
+    var openNav = function () {
       body.classList.add('nav-open');
       hamburger.setAttribute('aria-expanded', 'true');
-      // Trap focus
-      const focusable = mobileMenu.querySelectorAll('a, button');
-      if (focusable.length) focusable[0].focus();
+      hamburger.setAttribute('aria-label', 'Close menu');
+      var first = mobileMenu.querySelector(FOCUSABLE);
+      if (first) first.focus();
     };
-    const closeNav = () => {
+    var closeNav = function (returnFocus) {
+      if (!isOpen()) return;
       body.classList.remove('nav-open');
       hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open menu');
+      if (returnFocus) hamburger.focus();
     };
-    hamburger.addEventListener('click', () => {
-      body.classList.contains('nav-open') ? closeNav() : openNav();
+
+    hamburger.addEventListener('click', function () {
+      if (isOpen()) { closeNav(true); } else { openNav(); }
     });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeNav();
+
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') { closeNav(true); return; }
+      if (e.key !== 'Tab') return;
+      // Keep Tab inside the hamburger + menu while the menu is open
+      var items = [hamburger].concat(Array.prototype.slice.call(mobileMenu.querySelectorAll(FOCUSABLE)));
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
-    document.addEventListener('click', (e) => {
-      if (body.classList.contains('nav-open') &&
-          !mobileMenu.contains(e.target) &&
-          !hamburger.contains(e.target)) {
-        closeNav();
-      }
+
+    document.addEventListener('click', function (e) {
+      if (isOpen() && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) closeNav(false);
     });
-    // Close nav on link click
-    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    mobileMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { closeNav(false); });
+    });
+    window.matchMedia('(min-width: 1024px)').addEventListener('change', function (mq) {
+      if (mq.matches) closeNav(false);
+    });
   }
 
-  /* ── 3. Active nav link ── */
-  const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav__links a, .nav__mobile-menu a').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    const hrefFile = href.split('/').pop().split('?')[0] || 'index.html';
-    if (hrefFile === path || (path === '' && hrefFile === 'index.html')) {
-      a.classList.add('active');
-    }
-  });
-
-  /* ── 4. FAB show/hide near footer ── */
-  const fab = document.querySelector('.fab');
-  const footer = document.querySelector('.site-footer');
-  if (fab && footer) {
-    const observer = new IntersectionObserver(
-      ([entry]) => fab.classList.toggle('hidden', entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-    observer.observe(footer);
+  /* 3. Hide the floating call button when the footer is on screen */
+  var fab = document.querySelector('.fab');
+  var footer = document.querySelector('.site-footer');
+  if (fab && footer && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      fab.classList.toggle('hidden', entries[0].isIntersecting);
+    }, { threshold: 0.05 }).observe(footer);
   }
 
-  /* ── 5. Exit intent banner ── */
-  const exitBanner = document.querySelector('.exit-banner');
-  const exitDismiss = document.querySelector('.exit-banner__dismiss');
+  /* 4. Exit banner: desktop only, once per visit, stays until dismissed */
+  var exitBanner = document.querySelector('.exit-banner');
   if (exitBanner) {
-    const key = 'sp-exit-shown';
-    let shown = sessionStorage.getItem(key);
-    let mobileTimer = null;
+    var desktop = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)').matches;
+    var seen = false;
+    try { seen = sessionStorage.getItem('sp-exit-shown') === '1'; } catch (err) { /* storage blocked */ }
 
-    const showBanner = () => {
-      if (shown) return;
-      shown = true;
-      sessionStorage.setItem(key, '1');
-      exitBanner.classList.add('visible');
-      if (mobileTimer) clearTimeout(mobileTimer);
-    };
-    const hideBanner = () => exitBanner.classList.remove('visible');
-
-    if (!shown) {
-      // Desktop: trigger on mouse leave
-      document.addEventListener('mouseleave', showBanner, { once: true });
-      // Mobile: 45 second timer
-      mobileTimer = setTimeout(showBanner, 45000);
+    if (desktop && !seen) {
+      var showBanner = function (e) {
+        if (e.clientY > 0) return; // only when the pointer leaves through the top
+        document.removeEventListener('mouseout', showBanner);
+        exitBanner.classList.add('visible');
+        try { sessionStorage.setItem('sp-exit-shown', '1'); } catch (err) { /* ignore */ }
+      };
+      document.addEventListener('mouseout', showBanner);
     }
-    if (exitDismiss) exitDismiss.addEventListener('click', hideBanner);
-    // Auto-dismiss after 10s
-    exitBanner.addEventListener('transitionend', () => {
-      if (exitBanner.classList.contains('visible')) {
-        setTimeout(hideBanner, 10000);
-      }
-    });
+    var dismiss = exitBanner.querySelector('.exit-banner__dismiss');
+    if (dismiss) {
+      dismiss.addEventListener('click', function () {
+        var hadFocus = exitBanner.contains(document.activeElement);
+        exitBanner.classList.remove('visible');
+        if (hadFocus) document.getElementById('main-content').focus();
+      });
+    }
   }
 
-  /* ── 6. Smooth scroll with offset ── */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (!target) return;
-      e.preventDefault();
-      const offset = parseInt(getComputedStyle(document.documentElement)
-        .getPropertyValue('--content-top')) || 120;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset - 16;
-      window.scrollTo({ top, behavior: 'smooth' });
-    });
+  /* 5. Print buttons (emergency guide) */
+  document.querySelectorAll('[data-print]').forEach(function (btn) {
+    btn.addEventListener('click', function () { window.print(); });
   });
 
-  /* ── 7. AOS init ── */
-  if (typeof AOS !== 'undefined') {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    AOS.init({
-      duration: 600,
-      easing: 'ease-out-cubic',
-      once: true,
-      offset: 60,
-      disable: prefersReduced,
+  /* 6. Hero video: crossfade between clips, pause button, respects reduced motion.
+     Phones get the still image only, which saves their data plan. */
+  var heroVideos = window.matchMedia('(min-width: 768px)').matches ? document.querySelectorAll('.hero__video') : [];
+  var motionToggle = document.getElementById('heroMotionToggle');
+  if (heroVideos.length) {
+    var active = 0;
+    var playing = !reducedMotion;
+    var timer = null;
+
+    var setToggle = function () {
+      if (!motionToggle) return;
+      motionToggle.querySelector('.label').textContent = playing ? 'Pause video' : 'Play video';
+      var icon = motionToggle.querySelector('i');
+      icon.className = playing ? 'fa-solid fa-pause' : 'fa-solid fa-play';
+    };
+    var cycle = function () {
+      var next = (active + 1) % heroVideos.length;
+      var v = heroVideos[next];
+      if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+      v.currentTime = 0;
+      v.play().catch(function () {});
+      v.classList.add('is-active');
+      heroVideos[active].classList.remove('is-active');
+      heroVideos[active].pause();
+      active = next;
+    };
+    var start = function () {
+      heroVideos[active].play().catch(function () {});
+      if (heroVideos.length > 1) timer = setInterval(cycle, 7000);
+      playing = true;
+      setToggle();
+    };
+    var stop = function () {
+      clearInterval(timer);
+      heroVideos.forEach(function (v) { v.pause(); });
+      playing = false;
+      setToggle();
+    };
+
+    if (reducedMotion) { stop(); } else { start(); }
+    if (motionToggle) {
+      motionToggle.hidden = false;
+      motionToggle.addEventListener('click', function () { if (playing) { stop(); } else { start(); } });
+    }
+
+    // Save battery: pause when the hero scrolls out of view
+    if ('IntersectionObserver' in window) {
+      var hero = document.querySelector('.hero');
+      new IntersectionObserver(function (entries) {
+        if (!playing) return;
+        if (entries[0].isIntersecting) { heroVideos[active].play().catch(function () {}); }
+        else { heroVideos[active].pause(); }
+      }).observe(hero);
+    }
+  }
+
+  /* 7. Reviews row: previous / next buttons for the scroll-snap track */
+  document.querySelectorAll('[data-reviews]').forEach(function (wrap) {
+    var track = wrap.querySelector('.reviews__track');
+    var prev = wrap.querySelector('[data-dir="prev"]');
+    var next = wrap.querySelector('[data-dir="next"]');
+    if (!track || !prev || !next) return;
+    var update = function () {
+      var max = track.scrollWidth - track.clientWidth - 8;
+      prev.disabled = track.scrollLeft <= 8;
+      next.disabled = track.scrollLeft >= max;
+    };
+    var step = function (dir) {
+      track.scrollBy({ left: dir * track.clientWidth * 0.9, behavior: reducedMotion ? 'auto' : 'smooth' });
+    };
+    prev.addEventListener('click', function () { step(-1); });
+    next.addEventListener('click', function () { step(1); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+    update();
+  });
+
+  /* 8. Fade sections in as they scroll into view */
+  var revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length && 'IntersectionObserver' in window && !reducedMotion) {
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { revealObs.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* 9. Map: load Google Maps only when the visitor asks for it */
+  document.querySelectorAll('[data-map-src]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var facade = btn.closest('.map-facade');
+      var iframe = document.createElement('iframe');
+      iframe.src = btn.getAttribute('data-map-src');
+      iframe.title = btn.getAttribute('data-map-title') || 'Map';
+      iframe.loading = 'lazy';
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      iframe.setAttribute('allowfullscreen', '');
+      facade.replaceChildren(iframe);
+      iframe.focus();
     });
-  }
-
-  /* ── 8. Animated counters ── */
-  const counters = document.querySelectorAll('.counter-value');
-  if (counters.length) {
-    const animate = (el) => {
-      const target = parseInt(el.dataset.target, 10);
-      const suffix = el.dataset.suffix || '';
-      const duration = 1600;
-      const step = 16;
-      const steps = Math.round(duration / step);
-      let count = 0;
-      const inc = target / steps;
-      const timer = setInterval(() => {
-        count = Math.min(count + inc, target);
-        el.textContent = Math.round(count).toLocaleString() + suffix;
-        if (count >= target) clearInterval(timer);
-      }, step);
-    };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          animate(e.target);
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    counters.forEach(c => observer.observe(c));
-  }
-
-  /* ── 9. Map facade ── */
-  window.loadMap = function (embedUrl) {
-    const facade = document.getElementById('map-facade');
-    if (!facade) return;
-    facade.innerHTML =
-      '<iframe src="' + embedUrl + '" width="100%" height="400" style="border:0;display:block;" ' +
-      'allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" ' +
-      'title="Sunrise Plumbing Austin TX service area map"></iframe>';
-  };
-
-  /* ── 10. Strip height CSS var sync ── */
-  const syncStripHeight = () => {
-    const strip = document.querySelector('.emergency-strip');
-    if (strip) {
-      const h = strip.getBoundingClientRect().height;
-      document.documentElement.style.setProperty('--strip-height', Math.ceil(h) + 'px');
-    }
-  };
-  syncStripHeight();
-  window.addEventListener('resize', syncStripHeight, { passive: true });
-  // Also sync after fonts load (avoids flash of wrong offset)
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(syncStripHeight);
-  }
-
-  /* ── 11. Hero parallax ── */
-  const heroBg = document.querySelector('.hero__bg');
-  if (heroBg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const onParallax = () => {
-      const scrollY = window.scrollY;
-      const heroBottom = heroBg.closest('.hero').getBoundingClientRect().bottom + scrollY;
-      if (scrollY < heroBottom) {
-        heroBg.style.transform = 'translateY(' + (scrollY * 0.35) + 'px)';
-      }
-    };
-    window.addEventListener('scroll', onParallax, { passive: true });
-    onParallax();
-  }
-
-  /* ── 11b. Hero video crossfade ── */
-  const heroVideos = document.querySelectorAll('.hero__video');
-  const heroMotionToggle = document.getElementById('heroMotionToggle');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (heroMotionToggle && (heroVideos.length <= 1 || reducedMotion)) {
-    heroMotionToggle.hidden = true;
-  }
-
-  if (heroVideos.length > 1 && !reducedMotion) {
-    let activeIndex = 0;
-    let isPaused = false;
-    const cycleHero = () => {
-      const next = (activeIndex + 1) % heroVideos.length;
-      const upcoming = heroVideos[(next + 1) % heroVideos.length];
-      if (upcoming.preload !== 'auto') upcoming.preload = 'auto';
-      heroVideos[next].currentTime = 0;
-      heroVideos[next].play().catch(() => {});
-      heroVideos[next].classList.add('is-active');
-      heroVideos[activeIndex].classList.remove('is-active');
-      activeIndex = next;
-    };
-    let cycleTimer = setInterval(cycleHero, 6000);
-
-    if (heroMotionToggle) {
-      heroMotionToggle.addEventListener('click', () => {
-        const icon = heroMotionToggle.querySelector('i');
-        if (!isPaused) {
-          clearInterval(cycleTimer);
-          heroVideos[activeIndex].pause();
-          heroMotionToggle.setAttribute('aria-pressed', 'true');
-          heroMotionToggle.setAttribute('aria-label', 'Play background video');
-          if (icon) { icon.classList.remove('fa-pause'); icon.classList.add('fa-play'); }
-          isPaused = true;
-        } else {
-          heroVideos[activeIndex].play().catch(() => {});
-          cycleTimer = setInterval(cycleHero, 6000);
-          heroMotionToggle.setAttribute('aria-pressed', 'false');
-          heroMotionToggle.setAttribute('aria-label', 'Pause background video');
-          if (icon) { icon.classList.remove('fa-play'); icon.classList.add('fa-pause'); }
-          isPaused = false;
-        }
-      });
-    }
-  }
-
-  /* ── 12. Mobile reveal fallback (for AOS-disabled mobile) ── */
-
-  const revealEls = document.querySelectorAll('.reveal');
-  if (revealEls.length) {
-    const revealObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          revealObs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    revealEls.forEach(el => revealObs.observe(el));
-  }
+  });
 
 })();
