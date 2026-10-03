@@ -111,14 +111,10 @@
   });
 
   /* 6. Hero video: crossfade between clips, pause button, respects reduced motion.
-     Phones play one small 640px clip (no cycling, ~220KB); data-saver users get the poster only. */
+     Phones play one small 640px clip (no cycling, ~220KB); the clip is small enough that Data Saver is not checked. */
   var isMobile = !window.matchMedia('(min-width: 768px)').matches;
-  var conn = navigator.connection || {};
-  var saveData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
   var heroVideos = document.querySelectorAll('.hero__video');
-  if (saveData) {
-    heroVideos = [];
-  } else if (isMobile && heroVideos.length) {
+  if (isMobile && heroVideos.length) {
     var mobileVideo = heroVideos[0];
     mobileVideo.querySelector('source').src = './assets/video/hero/hero-1-mobile.mp4';
     mobileVideo.muted = true;
@@ -150,7 +146,14 @@
       active = next;
     };
     var start = function () {
-      heroVideos[active].play().catch(function () {});
+      var p = heroVideos[active].play();
+      // Autoplay can be blocked (e.g. iOS Low Power Mode); retry on the first touch
+      if (p && p.catch) p.catch(function () {
+        var retry = function () { if (playing) heroVideos[active].play().catch(function () {}); };
+        ['touchstart', 'click', 'scroll'].forEach(function (ev) {
+          window.addEventListener(ev, retry, { once: true, passive: true });
+        });
+      });
       if (heroVideos.length > 1) timer = setInterval(cycle, 7000);
       playing = true;
       setToggle();
