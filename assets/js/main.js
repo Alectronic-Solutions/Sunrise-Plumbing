@@ -111,8 +111,21 @@
   });
 
   /* 6. Hero video: crossfade between clips, pause button, respects reduced motion.
-     Phones get the still image only, which saves their data plan. */
-  var heroVideos = window.matchMedia('(min-width: 768px)').matches ? document.querySelectorAll('.hero__video') : [];
+     Phones play one small 640px clip (no cycling, ~220KB); data-saver users get the poster only. */
+  var isMobile = !window.matchMedia('(min-width: 768px)').matches;
+  var conn = navigator.connection || {};
+  var saveData = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+  var heroVideos = document.querySelectorAll('.hero__video');
+  if (saveData) {
+    heroVideos = [];
+  } else if (isMobile && heroVideos.length) {
+    var mobileVideo = heroVideos[0];
+    mobileVideo.querySelector('source').src = './assets/video/hero/hero-1-mobile.mp4';
+    mobileVideo.muted = true;
+    mobileVideo.preload = 'metadata';
+    mobileVideo.load();
+    heroVideos = [mobileVideo];
+  }
   var motionToggle = document.getElementById('heroMotionToggle');
   if (heroVideos.length) {
     var active = 0;
